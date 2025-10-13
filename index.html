@@ -1,0 +1,3031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIHLE DLADLA - Futuristic Software Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="portfolio-sections.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #111827;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Background */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: #8a2be2;
+            font-size: 12px;
+            animation: fall linear infinite;
+            text-shadow: 0 0 15px #8a2be2, 0 0 30px #9370db;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            backdrop-filter: blur(16px);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 1rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(0, 246, 255, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 246, 255, 0.1);
+            color: #00f6ff;
+        }
+
+        .nav-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-link span {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .galaxy-container {
+            position: relative;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.1) 0%, transparent 70%),
+                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 60, 0.8) 100%);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 50px;
+            padding: 4rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 0 100px rgba(138, 43, 226, 0.4),
+                0 0 200px rgba(75, 0, 130, 0.3),
+                inset 0 0 100px rgba(138, 43, 226, 0.1);
+            animation: galaxyFloat 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .galaxy-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.05) 0%, transparent 50%);
+            animation: galaxyRotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        .galaxy-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                conic-gradient(from 0deg at 50% 50%, 
+                    transparent 0deg, 
+                    rgba(138, 43, 226, 0.1) 60deg, 
+                    transparent 120deg,
+                    rgba(75, 0, 130, 0.1) 180deg,
+                    transparent 240deg,
+                    rgba(138, 43, 226, 0.1) 300deg,
+                    transparent 360deg);
+            border-radius: 50px;
+            z-index: -2;
+            animation: galaxySpin 15s linear infinite;
+        }
+
+        .galaxy-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 30%; right: 25%; animation-delay: 1s; }
+        .star:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 2s; }
+        .star:nth-child(4) { top: 60%; right: 40%; animation-delay: 0.5s; }
+        .star:nth-child(5) { bottom: 20%; right: 20%; animation-delay: 1.5s; }
+        .star:nth-child(6) { top: 45%; left: 60%; animation-delay: 2.5s; }
+        .star:nth-child(7) { top: 15%; left: 70%; animation-delay: 0.8s; }
+        .star:nth-child(8) { bottom: 45%; right: 60%; animation-delay: 1.8s; }
+
+        .galaxy-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 50%;
+            animation: ringRotate 25s linear infinite;
+        }
+
+        .galaxy-rings::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(75, 0, 130, 0.3);
+            border-radius: 50%;
+            animation: ringRotate 20s linear infinite reverse;
+        }
+
+        .galaxy-rings::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 50%;
+            animation: ringRotate 15s linear infinite;
+        }
+
+        .scanning-line {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, #ff1493, #00bfff, #ff1493, transparent);
+            animation: scanLine 3s ease-in-out infinite;
+        }
+
+        @keyframes galaxyFloat {
+            0%, 100% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotateX(0deg) rotateY(10deg);
+            }
+            75% {
+                transform: translateY(-15px) rotateX(-5deg) rotateY(5deg);
+            }
+        }
+
+        @keyframes galaxyRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes galaxySpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes ringRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .hero-cityscape-bg {
+            position: absolute;
+            inset: 0;
+            background: #000;
+            z-index: -3;
+        }
+
+        #solar-system-container {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(138, 43, 226, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(147, 112, 219, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(75, 0, 130, 0.2) 0%, transparent 70%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #2d1b69 100%);
+            animation: galaxyFloat 8s ease-in-out infinite;
+        }
+
+        #solar-system-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #8a2be2, transparent),
+                radial-gradient(2px 2px at 40px 70px, #9370db, transparent),
+                radial-gradient(1px 1px at 90px 40px, #8a2be2, transparent),
+                radial-gradient(1px 1px at 130px 80px, #9370db, transparent),
+                radial-gradient(2px 2px at 160px 30px, #8a2be2, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 3s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .space-environment {
+            position: absolute;
+            inset: 0;
+            perspective: 3000px;
+            transform-style: preserve-3d;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .space-object {
+            position: absolute;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .space-object:hover {
+            transform: scale(1.2) translateZ(40px);
+            filter: brightness(1.4) drop-shadow(0 0 30px rgba(138, 43, 226, 0.9));
+        }
+
+        /* Cyberpunk Cityscape Background */
+        .cyber-cityscape {
+            position: absolute;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.8) 0%, 
+                rgba(20, 20, 40, 0.6) 50%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            border-radius: 10px;
+            animation: cityFloat 25s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .city-1 {
+            width: 200px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            background: linear-gradient(180deg, 
+                rgba(0, 255, 255, 0.1) 0%, 
+                rgba(255, 0, 255, 0.05) 50%, 
+                transparent 100%);
+            animation-delay: 0s;
+        }
+
+        .city-2 {
+            width: 150px;
+            height: 250px;
+            bottom: 15%;
+            right: 10%;
+            background: linear-gradient(180deg, 
+                rgba(255, 0, 255, 0.1) 0%, 
+                rgba(0, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            animation-delay: 8s;
+        }
+
+        .city-3 {
+            width: 180px;
+            height: 200px;
+            top: 50%;
+            left: 70%;
+            background: linear-gradient(180deg, 
+                rgba(138, 43, 226, 0.1) 0%, 
+                rgba(0, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            animation-delay: 16s;
+        }
+
+        /* Floating Holographic Elements */
+        .holo-element {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 255, 0.8) 0%, 
+                rgba(255, 0, 255, 0.6) 50%, 
+                rgba(138, 43, 226, 0.8) 100%);
+            border-radius: 1px;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.3);
+            animation: holoFloat 18s linear infinite;
+            z-index: 2;
+        }
+
+        .holo-1 { top: 15%; left: 20%; animation-delay: 0s; }
+        .holo-2 { top: 25%; right: 25%; animation-delay: 3.6s; }
+        .holo-3 { bottom: 30%; left: 30%; animation-delay: 7.2s; }
+        .holo-4 { bottom: 20%; right: 35%; animation-delay: 10.8s; }
+        .holo-5 { top: 60%; left: 10%; animation-delay: 14.4s; }
+
+        /* Name Object - 3D Flying Sci-Fi Raft */
+        .name-object {
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(120px);
+            animation: raftFly 10s ease-in-out infinite;
+            z-index: 10;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .sci-fi-raft {
+            position: relative;
+            width: 900px;
+            height: 400px;
+            transform: rotateX(15deg) rotateY(-10deg);
+            transform-style: preserve-3d;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        /* Main Hull */
+        .raft-hull {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 180px;
+            background: linear-gradient(135deg, 
+                rgba(40, 40, 40, 0.95) 0%, 
+                rgba(60, 60, 60, 0.9) 20%, 
+                rgba(80, 80, 80, 0.95) 40%, 
+                rgba(100, 100, 100, 0.9) 60%, 
+                rgba(70, 70, 70, 0.95) 80%, 
+                rgba(50, 50, 50, 0.9) 100%);
+            border-radius: 35px 120px 35px 120px;
+            box-shadow: 
+                0 0 50px rgba(255, 165, 0, 0.6),
+                inset 0 0 30px rgba(255, 165, 0, 0.2),
+                0 0 100px rgba(255, 165, 0, 0.3);
+            border: 3px solid rgba(255, 165, 0, 0.8);
+            animation: hullPulse 4s ease-in-out infinite;
+        }
+
+        .hull-panels {
+            position: absolute;
+            inset: 0;
+        }
+
+        .panel {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(255, 165, 0, 0.15) 0%, 
+                rgba(255, 140, 0, 0.25) 30%, 
+                rgba(255, 165, 0, 0.2) 60%, 
+                rgba(255, 140, 0, 0.15) 100%);
+            border: 2px solid rgba(255, 165, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 0 10px rgba(255, 165, 0, 0.2),
+                0 0 15px rgba(255, 165, 0, 0.3);
+        }
+
+        .panel-1 { top: 15px; left: 30px; width: 120px; height: 40px; }
+        .panel-2 { top: 15px; right: 30px; width: 120px; height: 40px; }
+        .panel-3 { bottom: 15px; left: 30px; width: 120px; height: 40px; }
+        .panel-4 { bottom: 15px; right: 30px; width: 120px; height: 40px; }
+
+        .hull-lights {
+            position: absolute;
+            inset: 0;
+        }
+
+        .light {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, 
+                rgba(255, 165, 0, 0.95) 0%, 
+                rgba(255, 140, 0, 0.7) 40%, 
+                rgba(255, 100, 0, 0.4) 70%, 
+                transparent 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px rgba(255, 165, 0, 0.9),
+                0 0 40px rgba(255, 165, 0, 0.6),
+                0 0 60px rgba(255, 165, 0, 0.3);
+            animation: lightBlink 2.5s ease-in-out infinite;
+        }
+
+        .light-1 { top: 25px; left: 50px; animation-delay: 0s; }
+        .light-2 { top: 25px; right: 50px; animation-delay: 0.4s; }
+        .light-3 { bottom: 25px; left: 50px; animation-delay: 0.8s; }
+        .light-4 { bottom: 25px; right: 50px; animation-delay: 1.2s; }
+        .light-5 { top: 50%; left: 20px; animation-delay: 0.2s; }
+        .light-6 { top: 50%; right: 20px; animation-delay: 0.6s; }
+
+        .hull-details {
+            position: absolute;
+            inset: 0;
+        }
+
+        .detail-line {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 165, 0, 0.4), 
+                transparent);
+            height: 1px;
+        }
+
+        .line-1 { top: 30%; left: 10%; right: 10%; }
+        .line-2 { top: 70%; left: 10%; right: 10%; }
+        .line-3 { top: 50%; left: 20%; right: 20%; }
+
+        /* Name Display */
+        .name-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(30px);
+            width: 700px;
+            height: 120px;
+        }
+
+        .display-frame {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(20, 20, 20, 0.9) 30%, 
+                rgba(40, 40, 40, 0.85) 60%, 
+                rgba(20, 20, 20, 0.9) 100%);
+            border: 3px solid rgba(255, 165, 0, 0.9);
+            border-radius: 15px;
+            box-shadow: 
+                0 0 40px rgba(255, 165, 0, 0.8),
+                inset 0 0 25px rgba(255, 165, 0, 0.2),
+                0 0 80px rgba(255, 165, 0, 0.4);
+        }
+
+        .display-screen {
+            position: absolute;
+            inset: 8px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .display-screen h1 {
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+            margin: 0;
+            color: #ffa500;
+            text-shadow: 
+                0 0 15px rgba(255, 165, 0, 1),
+                0 0 30px rgba(255, 165, 0, 0.8),
+                0 0 45px rgba(255, 165, 0, 0.6);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1.5px;
+            font-weight: 900;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        .display-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 165, 0, 0.8), 
+                transparent);
+            animation: displayScan 2s linear infinite;
+        }
+
+        /* Thrusters */
+        .thrusters {
+            position: absolute;
+            inset: 0;
+        }
+
+        .thruster {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+
+        .thruster-1 { top: 30px; left: 40px; }
+        .thruster-2 { top: 30px; right: 40px; }
+        .thruster-3 { bottom: 30px; left: 40px; }
+        .thruster-4 { bottom: 30px; right: 40px; }
+
+        .thruster-nozzle {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(40, 40, 40, 0.95) 0%, 
+                rgba(60, 60, 60, 0.9) 30%, 
+                rgba(80, 80, 80, 0.95) 60%, 
+                rgba(100, 100, 100, 0.9) 100%);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 165, 0, 0.8);
+            box-shadow: 
+                0 0 25px rgba(255, 165, 0, 0.6),
+                inset 0 0 15px rgba(255, 165, 0, 0.2),
+                0 0 50px rgba(255, 165, 0, 0.4);
+        }
+
+        .thruster-flame {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 60px;
+            background: linear-gradient(180deg, 
+                rgba(255, 80, 0, 0.9) 0%, 
+                rgba(255, 120, 0, 0.8) 20%, 
+                rgba(255, 140, 0, 0.7) 40%, 
+                rgba(255, 165, 0, 0.5) 70%, 
+                transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: thrusterFlame 0.6s ease-in-out infinite;
+            box-shadow: 
+                0 0 30px rgba(255, 165, 0, 0.8),
+                0 0 60px rgba(255, 165, 0, 0.4);
+        }
+
+        /* Wings */
+        .wings {
+            position: absolute;
+            inset: 0;
+        }
+
+        .wing {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            background: linear-gradient(135deg, 
+                rgba(40, 40, 40, 0.95) 0%, 
+                rgba(60, 60, 60, 0.9) 30%, 
+                rgba(80, 80, 80, 0.95) 60%, 
+                rgba(100, 100, 100, 0.9) 100%);
+            border: 2px solid rgba(255, 165, 0, 0.8);
+            border-radius: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 
+                0 0 20px rgba(255, 165, 0, 0.5),
+                inset 0 0 10px rgba(255, 165, 0, 0.1);
+        }
+
+        .wing-left {
+            left: -50px;
+            transform: translateY(-50%) rotate(-20deg);
+        }
+
+        .wing-right {
+            right: -50px;
+            transform: translateY(-50%) rotate(20deg);
+        }
+
+        .wing-light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 165, 0, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+            animation: wingLightBlink 1.5s ease-in-out infinite;
+        }
+
+        .wing-detail {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 165, 0, 0.4), 
+                transparent);
+        }
+
+        /* Energy Trails */
+        .energy-trails {
+            position: absolute;
+            inset: -50px;
+            pointer-events: none;
+        }
+
+        .trail {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                rgba(255, 165, 0, 0.8) 0%, 
+                rgba(255, 140, 0, 0.5) 30%, 
+                rgba(255, 100, 0, 0.3) 60%, 
+                transparent 100%);
+            height: 3px;
+            animation: energyTrail 2.5s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+        }
+
+        .trail-1 { top: 25%; left: -80px; width: 150px; animation-delay: 0s; }
+        .trail-2 { top: 50%; left: -80px; width: 180px; animation-delay: 0.8s; }
+        .trail-3 { top: 75%; left: -80px; width: 120px; animation-delay: 1.6s; }
+
+        /* Exhaust Particles */
+        .exhaust-particles {
+            position: absolute;
+            inset: -30px;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, 
+                rgba(255, 165, 0, 0.8) 0%, 
+                rgba(255, 140, 0, 0.6) 50%, 
+                transparent 100%);
+            border-radius: 50%;
+            animation: particleExhaust 2.2s linear infinite;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
+        }
+
+        .particle-1 { top: 20%; left: 25%; animation-delay: 0s; }
+        .particle-2 { top: 30%; left: 20%; animation-delay: 0.2s; }
+        .particle-3 { top: 40%; left: 30%; animation-delay: 0.4s; }
+        .particle-4 { top: 60%; right: 25%; animation-delay: 0.6s; }
+        .particle-5 { top: 70%; right: 20%; animation-delay: 0.8s; }
+        .particle-6 { top: 80%; right: 30%; animation-delay: 1s; }
+
+        /* Supporting Object - Energy Field Generator */
+        .subtitle-object {
+            top: 70%;
+            left: 25%;
+            transform: translate(-50%, -50%) translateZ(60px) rotateY(20deg);
+            animation: generatorFloat 12s ease-in-out infinite;
+            z-index: 8;
+        }
+
+        .energy-generator {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .generator-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+        }
+
+        .core-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255, 165, 0, 0.6);
+            border-radius: 50%;
+            animation: ringRotate 8s linear infinite;
+        }
+
+        .ring-1 {
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .ring-2 {
+            width: 60px;
+            height: 60px;
+            animation-delay: 2s;
+        }
+
+        .ring-3 {
+            width: 40px;
+            height: 40px;
+            animation-delay: 4s;
+        }
+
+        .core-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, 
+                rgba(255, 165, 0, 0.9) 0%, 
+                rgba(255, 140, 0, 0.6) 50%, 
+                transparent 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 15px rgba(255, 165, 0, 0.8),
+                0 0 30px rgba(255, 165, 0, 0.4);
+            animation: centerPulse 2s ease-in-out infinite;
+        }
+
+        .energy-beams {
+            position: absolute;
+            inset: 0;
+        }
+
+        .beam {
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(180deg, 
+                rgba(255, 165, 0, 0.8) 0%, 
+                rgba(255, 140, 0, 0.4) 50%, 
+                transparent 100%);
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            animation: beamRotate 6s linear infinite;
+        }
+
+        .beam-1 { transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0s; }
+        .beam-2 { transform: translate(-50%, -50%) rotate(90deg); animation-delay: 1.5s; }
+        .beam-3 { transform: translate(-50%, -50%) rotate(180deg); animation-delay: 3s; }
+        .beam-4 { transform: translate(-50%, -50%) rotate(270deg); animation-delay: 4.5s; }
+
+        .generator-particles {
+            position: absolute;
+            inset: -20px;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 165, 0, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.6);
+            animation: particleOrbit 10s linear infinite;
+        }
+
+        .p-1 { top: 20%; left: 50%; animation-delay: 0s; }
+        .p-2 { top: 50%; right: 20%; animation-delay: 2.5s; }
+        .p-3 { bottom: 20%; left: 50%; animation-delay: 5s; }
+        .p-4 { top: 50%; left: 20%; animation-delay: 7.5s; }
+
+        /* Description Object - Cyberpunk Terminal */
+        .description-object {
+            top: 70%;
+            right: 20%;
+            transform: translate(50%, -50%) translateZ(60px) rotateY(-30deg);
+            animation: terminalFloat 18s ease-in-out infinite;
+            z-index: 6;
+        }
+
+        .cyber-terminal {
+            position: relative;
+            width: 350px;
+            height: 270px;
+        }
+
+        .terminal-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 220px;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 20, 0, 0.9) 50%, 
+                rgba(0, 0, 0, 0.95) 100%);
+            border: 3px solid rgba(0, 255, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            overflow: visible;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 0, 0.6),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .screen-glow {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+            animation: screenGlow 4s ease-in-out infinite;
+        }
+
+        .terminal-header {
+            position: relative;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                rgba(0, 255, 0, 0.2) 0%, 
+                rgba(0, 255, 0, 0.4) 50%, 
+                rgba(0, 255, 0, 0.2) 100%);
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .header-lights {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header-lights::before,
+        .header-lights::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+            animation: lightBlink 2s ease-in-out infinite;
+        }
+
+        .header-lights::after {
+            background: rgba(255, 255, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.6);
+            animation-delay: 1s;
+        }
+
+        .terminal-title {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .terminal-content {
+            position: relative;
+            height: 140px;
+            overflow: visible;
+        }
+
+        .code-lines {
+            margin-bottom: 10px;
+        }
+
+        .code-line {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            margin: 2px 0;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+            animation: codeTyping 3s ease-in-out infinite;
+        }
+
+        .code-line:nth-child(1) { animation-delay: 0s; }
+        .code-line:nth-child(2) { animation-delay: 1s; }
+        .code-line:nth-child(3) { animation-delay: 2s; }
+
+        .terminal-content .description {
+            font-size: 0.8rem;
+            color: #00ff00;
+            margin: 10px 0 0 0;
+            text-align: center;
+            line-height: 1.4;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-cursor {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            width: 10px;
+            height: 15px;
+            background: #00ff00;
+            animation: cursorBlink 1s ease-in-out infinite;
+        }
+
+        .terminal-base {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(180deg, 
+                rgba(0, 255, 0, 0.3) 0%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            border-radius: 0 0 15px 15px;
+            border: 2px solid rgba(0, 255, 0, 0.6);
+            border-top: none;
+        }
+
+        .base-lights {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 0, 0.6), 
+                transparent);
+            animation: baseLightFlow 3s linear infinite;
+        }
+
+        .terminal-ports {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            right: 20px;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(0, 255, 0, 0.2) 0px,
+                rgba(0, 255, 0, 0.2) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+
+        /* Buttons Object - Cyberpunk Control Panel */
+        .buttons-object {
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(70px);
+            animation: cyberPanelFloat 20s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        .cyber-control-panel {
+            position: relative;
+            width: 450px;
+            height: 150px;
+        }
+
+        .panel-frame {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(20, 20, 40, 0.8) 50%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            border: 3px solid rgba(0, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 255, 0.6),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .panel-lights {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 255, 0.8), 
+                rgba(255, 0, 255, 0.6), 
+                rgba(0, 255, 255, 0.8), 
+                transparent);
+            border-radius: 2px;
+            animation: panelLightFlow 4s linear infinite;
+        }
+
+        .control-buttons {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 40px;
+        }
+
+        .cyber-btn {
+            position: relative;
+            background: linear-gradient(145deg, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 20, 40, 0.8) 50%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            border: 2px solid rgba(0, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 15px 30px;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 255, 0.6),
+                inset 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+            text-decoration: none;
+            min-width: 180px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-glow {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            animation: btnGlow 5s ease-in-out infinite;
+        }
+
+        .btn-text {
+            color: #00ffff;
+            font-weight: 700;
+            font-size: 1rem;
+            text-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.8),
+                0 0 30px rgba(0, 255, 255, 0.4);
+            position: relative;
+            z-index: 2;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .btn-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: rgba(0, 255, 0, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+            animation: indicatorBlink 2s ease-in-out infinite;
+        }
+
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 255, 0.5), 
+                transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cyber-btn:hover::before {
+            left: 100%;
+        }
+
+        .cyber-btn:hover {
+            transform: translateY(-8px) translateZ(15px);
+            box-shadow: 
+                0 0 40px rgba(0, 255, 255, 0.8),
+                inset 0 0 25px rgba(0, 255, 255, 0.3);
+        }
+
+        .panel-wiring {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .panel-wiring::before,
+        .panel-wiring::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 255, 0.3), 
+                transparent);
+            height: 1px;
+            animation: wiringFlow 6s linear infinite;
+        }
+
+        .panel-wiring::before {
+            top: 30%;
+            left: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .panel-wiring::after {
+            bottom: 30%;
+            left: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .panel-energy {
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, 
+                transparent 70%, 
+                rgba(0, 255, 255, 0.05) 90%, 
+                transparent 100%);
+            border-radius: 50%;
+            animation: panelEnergy 8s ease-in-out infinite;
+        }
+
+        /* Space Debris and Asteroids */
+        .space-debris {
+            position: absolute;
+            background: rgba(138, 43, 226, 0.4);
+            border-radius: 50%;
+            animation: debrisFloat 20s linear infinite;
+            z-index: 1;
+        }
+
+        .debris-1 {
+            width: 4px;
+            height: 4px;
+            top: 15%;
+            left: 20%;
+            animation-delay: 0s;
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.6);
+        }
+
+        .debris-2 {
+            width: 6px;
+            height: 6px;
+            top: 25%;
+            right: 25%;
+            animation-delay: 5s;
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.6);
+        }
+
+        .debris-3 {
+            width: 3px;
+            height: 3px;
+            bottom: 35%;
+            left: 15%;
+            animation-delay: 10s;
+            box-shadow: 0 0 6px rgba(139, 69, 19, 0.6);
+        }
+
+        .debris-4 {
+            width: 5px;
+            height: 5px;
+            bottom: 25%;
+            right: 20%;
+            animation-delay: 15s;
+            box-shadow: 0 0 12px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Additional Space Elements for Polish */
+        .space-glow {
+            position: absolute;
+            inset: -100px;
+            background: radial-gradient(circle, 
+                transparent 70%, 
+                rgba(138, 43, 226, 0.02) 90%, 
+                transparent 100%);
+            border-radius: 50%;
+            animation: spaceGlow 15s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .space-glow:nth-child(1) {
+            top: 20%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .space-glow:nth-child(2) {
+            bottom: 30%;
+            right: 40%;
+            animation-delay: 7s;
+        }
+
+        @keyframes spaceGlow {
+            0%, 100% { opacity: 0.02; transform: scale(1); }
+            50% { opacity: 0.08; transform: scale(1.2); }
+        }
+
+        /* Energy Fields */
+        .energy-field {
+            position: absolute;
+            inset: -50px;
+            background: radial-gradient(circle, 
+                transparent 60%, 
+                rgba(138, 43, 226, 0.05) 80%, 
+                transparent 100%);
+            border-radius: 50%;
+            animation: energyField 8s ease-in-out infinite;
+        }
+
+        /* Sci-Fi Themed Animations */
+        @keyframes cityFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            33% { transform: translate(15px, -25px) scale(1.05); opacity: 0.5; }
+            66% { transform: translate(-10px, 15px) scale(0.95); opacity: 0.4; }
+        }
+
+        @keyframes holoFloat {
+            0% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); opacity: 0.6; }
+            25% { transform: translateY(-35px) translateX(25px) rotate(90deg) scale(1.1); opacity: 1; }
+            50% { transform: translateY(-15px) translateX(-15px) rotate(180deg) scale(0.9); opacity: 0.7; }
+            75% { transform: translateY(-45px) translateX(30px) rotate(270deg) scale(1.05); opacity: 0.9; }
+            100% { transform: translateY(0) translateX(0) rotate(360deg) scale(1); opacity: 0.6; }
+        }
+
+        @keyframes raftFly {
+            0%, 100% { 
+                transform: translate(-50%, -50%) translateZ(120px) rotateX(15deg) rotateY(-10deg); 
+            }
+            25% { 
+                transform: translate(-50%, -50%) translateZ(140px) rotateX(18deg) rotateY(-12deg); 
+            }
+            50% { 
+                transform: translate(-50%, -50%) translateZ(130px) rotateX(12deg) rotateY(-8deg); 
+            }
+            75% { 
+                transform: translate(-50%, -50%) translateZ(145px) rotateX(16deg) rotateY(-14deg); 
+            }
+        }
+
+        @keyframes hullPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 30px rgba(255, 165, 0, 0.4),
+                    inset 0 0 20px rgba(255, 165, 0, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 40px rgba(255, 165, 0, 0.6),
+                    inset 0 0 25px rgba(255, 165, 0, 0.2);
+            }
+        }
+
+        @keyframes lightBlink {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes displayScan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes thrusterFlame {
+            0%, 100% { 
+                transform: translateX(-50%) scaleY(1) scaleX(1);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: translateX(-50%) scaleY(1.2) scaleX(0.8);
+                opacity: 1;
+            }
+        }
+
+        @keyframes wingLightBlink {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes energyTrail {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        @keyframes particleExhaust {
+            0% { 
+                transform: translateX(0) translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(-80px) translateY(-40px) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes frameGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.9); }
+        }
+
+        @keyframes scanLines {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes gridFlicker {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes glitch {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.1; }
+        }
+
+        @keyframes energyParticles {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+
+        @keyframes generatorFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateZ(60px) rotateY(20deg); }
+            50% { transform: translate(-50%, -50%) translateZ(70px) rotateY(25deg); }
+        }
+
+        @keyframes ringRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes centerPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                box-shadow: 
+                    0 0 15px rgba(255, 165, 0, 0.8),
+                    0 0 30px rgba(255, 165, 0, 0.4);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2); 
+                box-shadow: 
+                    0 0 20px rgba(255, 165, 0, 1),
+                    0 0 40px rgba(255, 165, 0, 0.6);
+            }
+        }
+
+        @keyframes beamRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes particleOrbit {
+            0% { 
+                transform: translate(-50%, -50%) rotate(0deg) translateX(40px) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) rotate(360deg) translateX(40px) rotate(-360deg);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes terminalFloat {
+            0%, 100% { transform: translate(50%, -50%) translateZ(60px) rotateY(-30deg); }
+            50% { transform: translate(50%, -50%) translateZ(70px) rotateY(-35deg); }
+        }
+
+        @keyframes screenGlow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes lightBlink {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes codeTyping {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes baseLightFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes cyberPanelFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateZ(70px) rotateX(10deg); }
+            50% { transform: translate(-50%, -50%) translateZ(80px) rotateX(15deg); }
+        }
+
+        @keyframes panelLightFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes btnGlow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes indicatorBlink {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes wiringFlow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        @keyframes panelEnergy {
+            0%, 100% { opacity: 0.05; transform: scale(1); }
+            50% { opacity: 0.15; transform: scale(1.1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .interdimensional-portal {
+                width: 300px;
+                height: 160px;
+            }
+            
+            .space-station {
+                width: 250px;
+                height: 120px;
+            }
+            
+            .planet-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .planet-core {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .space-environment {
+                perspective: 1500px;
+            }
+            
+            .space-object {
+                transform: scale(0.7);
+            }
+            
+            .name-object {
+                top: 15%;
+                left: 50%;
+                transform: translate(-50%, -50%) translateZ(60px);
+            }
+            
+            .interdimensional-portal {
+                width: 250px;
+                height: 130px;
+            }
+            
+            .portal-core {
+                padding: 10px 20px;
+                min-width: 150px;
+            }
+            
+            .subtitle-object {
+                top: 45%;
+                left: 30%;
+                transform: translate(-50%, -50%) translateZ(40px) rotateY(15deg);
+            }
+            
+            .planet-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .planet-core {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .data-display {
+                top: -40px;
+                padding: 8px 16px;
+            }
+            
+            .data-display .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .description-object {
+                top: 60%;
+                right: 30%;
+                transform: translate(50%, -50%) translateZ(30px) rotateY(-20deg);
+            }
+            
+            .space-station {
+                width: 220px;
+                height: 100px;
+            }
+            
+            .station-hull {
+                padding: 12px 20px;
+            }
+            
+            .station-hull .description {
+                font-size: 0.8rem;
+            }
+            
+            .buttons-object {
+                top: 70%;
+                left: 50%;
+                transform: translate(-50%, -50%) translateZ(40px);
+            }
+            
+            .command-console {
+                gap: 15px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .console-btn {
+                padding: 10px 20px;
+                min-width: 120px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .space-object {
+                transform: scale(0.6);
+            }
+            
+            .name-object {
+                top: 10%;
+            }
+            
+            .interdimensional-portal {
+                width: 200px;
+                height: 100px;
+            }
+            
+            .portal-core {
+                padding: 8px 16px;
+                min-width: 120px;
+            }
+            
+            .portal-core h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle-object {
+                top: 40%;
+                left: 35%;
+            }
+            
+            .planet-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .planet-core {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .data-display {
+                top: -35px;
+                padding: 6px 12px;
+            }
+            
+            .data-display .subtitle {
+                font-size: 0.7rem;
+            }
+            
+            .description-object {
+                top: 55%;
+                right: 35%;
+            }
+            
+            .space-station {
+                width: 180px;
+                height: 80px;
+            }
+            
+            .station-hull {
+                padding: 8px 16px;
+            }
+            
+            .station-hull .description {
+                font-size: 0.7rem;
+            }
+            
+            .buttons-object {
+                top: 65%;
+            }
+            
+            .console-btn {
+                padding: 8px 16px;
+                min-width: 100px;
+                font-size: 0.7rem;
+            }
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse at 30% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(25, 25, 112, 0.1) 0%, transparent 60%);
+            z-index: -2;
+        }
+
+        .hero-blur-transition {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(17, 24, 39, 0.3) 30%,
+                rgba(17, 24, 39, 0.7) 70%,
+                rgba(17, 24, 39, 0.95) 100%
+            );
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        .cyber-shapes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .atmospheric-dust {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dust-particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(138, 43, 226, 0.8);
+            border-radius: 50%;
+            animation: dustFloat 8s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.9), 0 0 30px rgba(147, 112, 219, 0.6);
+        }
+
+        @keyframes dustFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translateY(-15px) translateX(8px) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-8px) translateX(-5px) scale(0.8);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-25px) translateX(12px) scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        .cyber-line {
+            position: absolute;
+            height: 1px;
+            background: #8a2be2;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px #8a2be2;
+        }
+
+        .cyber-line:nth-child(1) {
+            top: 5rem;
+            left: 2.5rem;
+            width: 8rem;
+        }
+
+        .cyber-line:nth-child(2) {
+            top: 10rem;
+            right: 5rem;
+            width: 6rem;
+            background: #9370db;
+            animation-delay: 1s;
+            box-shadow: 0 0 20px #9370db;
+        }
+
+        .cyber-line:nth-child(3) {
+            bottom: 8rem;
+            left: 25%;
+            width: 10rem;
+            background: #8a2be2;
+            animation-delay: 2s;
+            box-shadow: 0 0 20px #8a2be2;
+        }
+
+        .cyber-square {
+            position: absolute;
+            border: 2px solid #9370db;
+            transform: rotate(45deg);
+            animation: spin 20s linear infinite;
+            box-shadow: 0 0 20px #9370db;
+        }
+
+        .cyber-square:nth-child(4) {
+            top: 8rem;
+            right: 8rem;
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .cyber-square:nth-child(5) {
+            bottom: 10rem;
+            right: 2.5rem;
+            width: 3rem;
+            height: 3rem;
+            border-color: #ff00de;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cyber-square:nth-child(6) {
+            top: 50%;
+            left: 2rem;
+            width: 2rem;
+            height: 2rem;
+            background: rgba(255, 107, 0, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .corner-bracket {
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .corner-bracket::before {
+            content: '';
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            border: 2px solid;
+        }
+
+        .corner-bracket:nth-child(7) {
+            top: 4rem;
+            left: 4rem;
+        }
+
+        .corner-bracket:nth-child(7)::before {
+            border-right: none;
+            border-bottom: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 20px #8a2be2;
+        }
+
+        .corner-bracket:nth-child(8) {
+            top: 4rem;
+            right: 4rem;
+        }
+
+        .corner-bracket:nth-child(8)::before {
+            border-left: none;
+            border-bottom: none;
+            border-color: #9370db;
+            box-shadow: 0 0 20px #9370db;
+        }
+
+        .corner-bracket:nth-child(9) {
+            bottom: 4rem;
+            left: 4rem;
+        }
+
+        .corner-bracket:nth-child(9)::before {
+            border-right: none;
+            border-top: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 20px #8a2be2;
+        }
+
+        .corner-bracket:nth-child(10) {
+            bottom: 4rem;
+            right: 4rem;
+        }
+
+        .corner-bracket:nth-child(10)::before {
+            border-left: none;
+            border-top: none;
+            border-color: #9370db;
+            box-shadow: 0 0 20px #9370db;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(45deg); }
+            to { transform: rotate(405deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: bold;
+            color: rgba(81, 8, 126, 0.5);
+            margin-bottom: 1rem;
+            text-shadow: 
+                2px 2px 0px rgba(135, 206, 250, 0.8),
+                4px 4px 0px rgba(135, 206, 250, 0.6),
+                6px 6px 0px rgba(135, 206, 250, 0.4),
+                8px 8px 0px rgba(135, 206, 250, 0.3),
+                10px 10px 0px rgba(135, 206, 250, 0.2),
+                12px 12px 20px rgba(0, 0, 0, 0.8);
+            transform: perspective(500px) rotateX(10deg) rotateY(-5deg);
+            transform-style: preserve-3d;
+            position: relative;
+            z-index: 15;
+            animation: blockFloat 4s ease-in-out infinite;
+            letter-spacing: 0.02em;
+            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.6);
+            text-stroke: 1px rgba(135, 206, 250, 0.6);
+        }
+
+        .hero h1::before {
+            content: 'SIHLE DLADLA';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(135, 206, 250, 0.8);
+            transform: translateZ(-8px) translateX(2px) translateY(2px);
+            opacity: 0.7;
+            z-index: -1;
+            text-shadow: 
+                0 0 3px #87cefa,
+                0 0 6px #87cefa,
+                0 0 9px #87cefa,
+                0 0 12px #87cefa;
+            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.4);
+            text-stroke: 1px rgba(135, 206, 250, 0.4);
+        }
+
+        .hero h1::after {
+            content: 'SIHLE DLADLA';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(135, 206, 250, 0.4);
+            transform: translateZ(-16px) translateX(4px) translateY(4px);
+            opacity: 0.5;
+            z-index: -2;
+            text-shadow: 
+                0 0 2px #87cefa,
+                0 0 4px #87cefa;
+            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.2);
+            text-stroke: 1px rgba(135, 206, 250, 0.2);
+        }
+
+        @keyframes blockFloat {
+            0%, 100% {
+                transform: perspective(500px) rotateX(10deg) rotateY(-5deg) translateZ(0px);
+            }
+            50% {
+                transform: perspective(500px) rotateX(10deg) rotateY(-5deg) translateZ(5px);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: rgba(81, 8, 126, 0.5);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+            text-shadow: 
+                1px 1px 0px rgba(135, 206, 250, 0.7),
+                2px 2px 0px rgba(135, 206, 250, 0.5),
+                3px 3px 0px rgba(135, 206, 250, 0.4),
+                4px 4px 0px rgba(135, 206, 250, 0.3),
+                5px 5px 10px rgba(0, 0, 0, 0.6);
+            transform: perspective(500px) rotateX(8deg) rotateY(-3deg);
+            transform-style: preserve-3d;
+            position: relative;
+            z-index: 14;
+            animation: blockFloat 4s ease-in-out infinite;
+            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.5);
+            text-stroke: 1px rgba(135, 206, 250, 0.5);
+        }
+
+        .hero .subtitle::before {
+            content: '<FUTURISTIC SOFTWARE DEVELOPER/>';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: rgba(135, 206, 250, 0.6);
+            transform: translateZ(-4px) translateX(1px) translateY(1px);
+            opacity: 0.6;
+            z-index: -1;
+            text-shadow: 
+                0 0 2px #87cefa,
+                0 0 4px #87cefa;
+            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.3);
+            text-stroke: 1px rgba(135, 206, 250, 0.3);
+        }
+
+        .hero .description {
+            color: #e6e6fa;
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 42rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+            transform: translateZ(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            border-color: #8a2be2;
+            color: #8a2be2;
+            background: transparent;
+            transform: translateZ(5px);
+        }
+
+        .btn-primary:hover {
+            background: #8a2be2;
+            color: #000;
+            box-shadow: 0 0 50px #8a2be2;
+            transform: scale(1.05) translateZ(10px);
+        }
+
+        .btn-secondary {
+            border-color: #9370db;
+            color: #9370db;
+            background: transparent;
+            transform: translateZ(5px);
+        }
+
+        .btn-secondary:hover {
+            background: #9370db;
+            color: #000;
+            box-shadow: 0 0 50px #9370db;
+            transform: scale(1.05) translateZ(10px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 1.5rem;
+            height: 2.5rem;
+            border: 2px solid #8a2be2;
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 0.5rem;
+            transform: translateZ(5px);
+        }
+
+        .scroll-dot {
+            width: 0.25rem;
+            height: 0.75rem;
+            background: #8a2be2;
+            border-radius: 9999px;
+            animation: pulse 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-links">
+            <a href="#hero" class="nav-link">
+                <span class="nav-icon">👤</span>
+                <span>Hero</span>
+            </a>
+            <a href="#about" class="nav-link">
+                <span class="nav-icon">💻</span>
+                <span>About</span>
+            </a>
+            <a href="#projects" class="nav-link">
+                <span class="nav-icon">🔗</span>
+                <span>Projects</span>
+            </a>
+            <a href="#certificates" class="nav-link">
+                <span class="nav-icon">🏆</span>
+                <span>Certificates</span>
+            </a>
+            <a href="#contact" class="nav-link">
+                <span class="nav-icon">📧</span>
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-cityscape-bg"></div>
+        <div id="solar-system-container">
+            <div class="floating-planets">
+                <div class="planet planet-1"></div>
+                <div class="planet planet-2"></div>
+                <div class="planet planet-3"></div>
+                <div class="planet planet-4"></div>
+            </div>
+        </div>
+        <div class="hero-gradient"></div>
+        <div class="hero-blur-transition"></div>
+        
+        <!-- Cyberpunk geometric shapes -->
+        <div class="cyber-shapes">
+            <div class="cyber-line"></div>
+            <div class="cyber-line"></div>
+            <div class="cyber-line"></div>
+            <div class="cyber-square"></div>
+            <div class="cyber-square"></div>
+            <div class="cyber-square"></div>
+            <div class="corner-bracket"></div>
+            <div class="corner-bracket"></div>
+            <div class="corner-bracket"></div>
+            <div class="corner-bracket"></div>
+        </div>
+
+        <!-- Atmospheric dust particles -->
+        <div class="atmospheric-dust">
+            <div class="dust-particle" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+            <div class="dust-particle" style="top: 30%; right: 25%; animation-delay: 1s;"></div>
+            <div class="dust-particle" style="bottom: 40%; left: 15%; animation-delay: 2s;"></div>
+            <div class="dust-particle" style="top: 60%; right: 40%; animation-delay: 0.5s;"></div>
+            <div class="dust-particle" style="bottom: 20%; right: 20%; animation-delay: 1.5s;"></div>
+            <div class="dust-particle" style="top: 45%; left: 60%; animation-delay: 2.5s;"></div>
+        </div>
+        
+        <div class="space-environment">
+            <!-- Cyberpunk Cityscape Background -->
+            <div class="cyber-cityscape city-1"></div>
+            <div class="cyber-cityscape city-2"></div>
+            <div class="cyber-cityscape city-3"></div>
+            
+            <!-- Floating Holographic Elements -->
+            <div class="holo-element holo-1"></div>
+            <div class="holo-element holo-2"></div>
+            <div class="holo-element holo-3"></div>
+            <div class="holo-element holo-4"></div>
+            <div class="holo-element holo-5"></div>
+            
+            <!-- Name Object - 3D Flying Sci-Fi Raft -->
+            <div class="space-object name-object">
+                <div class="sci-fi-raft">
+                    <!-- Main Hull -->
+                    <div class="raft-hull">
+                        <div class="hull-panels">
+                            <div class="panel panel-1"></div>
+                            <div class="panel panel-2"></div>
+                            <div class="panel panel-3"></div>
+                            <div class="panel panel-4"></div>
+                        </div>
+                        <div class="hull-lights">
+                            <div class="light light-1"></div>
+                            <div class="light light-2"></div>
+                            <div class="light light-3"></div>
+                            <div class="light light-4"></div>
+                            <div class="light light-5"></div>
+                            <div class="light light-6"></div>
+                        </div>
+                        <div class="hull-details">
+                            <div class="detail-line line-1"></div>
+                            <div class="detail-line line-2"></div>
+                            <div class="detail-line line-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Name Display -->
+                    <div class="name-display">
+                        <div class="display-frame"></div>
+                        <div class="display-screen">
+                            <h1>SIHLE DLADLA</h1>
+                            <div class="display-scan"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thrusters -->
+                    <div class="thrusters">
+                        <div class="thruster thruster-1">
+                            <div class="thruster-nozzle"></div>
+                            <div class="thruster-flame"></div>
+                        </div>
+                        <div class="thruster thruster-2">
+                            <div class="thruster-nozzle"></div>
+                            <div class="thruster-flame"></div>
+                        </div>
+                        <div class="thruster thruster-3">
+                            <div class="thruster-nozzle"></div>
+                            <div class="thruster-flame"></div>
+                        </div>
+                        <div class="thruster thruster-4">
+                            <div class="thruster-nozzle"></div>
+                            <div class="thruster-flame"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wing Extensions -->
+                    <div class="wings">
+                        <div class="wing wing-left">
+                            <div class="wing-light"></div>
+                            <div class="wing-detail"></div>
+                        </div>
+                        <div class="wing wing-right">
+                            <div class="wing-light"></div>
+                            <div class="wing-detail"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Energy Trails -->
+                    <div class="energy-trails">
+                        <div class="trail trail-1"></div>
+                        <div class="trail trail-2"></div>
+                        <div class="trail trail-3"></div>
+                    </div>
+                    
+                    <!-- Exhaust Particles -->
+                    <div class="exhaust-particles">
+                        <div class="particle particle-1"></div>
+                        <div class="particle particle-2"></div>
+                        <div class="particle particle-3"></div>
+                        <div class="particle particle-4"></div>
+                        <div class="particle particle-5"></div>
+                        <div class="particle particle-6"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Supporting Object - Energy Field Generator -->
+            <div class="space-object subtitle-object">
+                <div class="energy-generator">
+                    <div class="generator-core">
+                        <div class="core-ring ring-1"></div>
+                        <div class="core-ring ring-2"></div>
+                        <div class="core-ring ring-3"></div>
+                        <div class="core-center"></div>
+                    </div>
+                    <div class="energy-beams">
+                        <div class="beam beam-1"></div>
+                        <div class="beam beam-2"></div>
+                        <div class="beam beam-3"></div>
+                        <div class="beam beam-4"></div>
+                    </div>
+                    <div class="generator-particles">
+                        <div class="particle p-1"></div>
+                        <div class="particle p-2"></div>
+                        <div class="particle p-3"></div>
+                        <div class="particle p-4"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Description Object - Cyberpunk Terminal -->
+            <div class="space-object description-object">
+                <div class="cyber-terminal">
+                    <div class="terminal-screen">
+                        <div class="screen-glow"></div>
+                        <div class="terminal-header">
+                            <div class="header-lights"></div>
+                            <div class="terminal-title">SYSTEM_ACCESS</div>
+                        </div>
+                        <div class="terminal-content">
+                            <div class="code-lines">
+                                <div class="code-line">$> INITIALIZING...</div>
+                                <div class="code-line">$> LOADING PROFILE...</div>
+                                <div class="code-line">$> ACCESS GRANTED</div>
+                            </div>
+                            <p class="description">
+                                Crafting tomorrow's digital experiences through innovative code and cutting-edge technology
+                            </p>
+                        </div>
+                        <div class="terminal-cursor"></div>
+                    </div>
+                    <div class="terminal-base">
+                        <div class="base-lights"></div>
+                        <div class="terminal-ports"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Buttons Object - Cyberpunk Control Panel -->
+            <div class="space-object buttons-object">
+                <div class="cyber-control-panel">
+                    <div class="panel-frame">
+                        <div class="panel-lights"></div>
+                        <div class="control-buttons">
+                            <a href="#projects" class="cyber-btn btn-primary">
+                                <div class="btn-glow"></div>
+                                <span class="btn-text">VIEW PROJECTS</span>
+                                <div class="btn-indicator"></div>
+                            </a>
+                            <a href="#contact" class="cyber-btn btn-secondary">
+                                <div class="btn-glow"></div>
+                                <span class="btn-text">GET IN TOUCH</span>
+                                <div class="btn-indicator"></div>
+                            </a>
+                        </div>
+                        <div class="panel-wiring"></div>
+                    </div>
+                    <div class="panel-energy"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-bg">
+            <div class="about-line"></div>
+            <div class="about-line"></div>
+            <div class="about-data-line"></div>
+            <div class="about-data-line"></div>
+        </div>
+        
+        <div class="about-card">
+            <div class="corner-bottom-left"></div>
+            <div class="corner-bottom-right"></div>
+            
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a passionate software developer with a vision for the future. My journey in technology 
+                        is driven by curiosity and the desire to create solutions that push the boundaries of 
+                        what's possible.
+                    </p>
+                    
+                    <p>
+                        From web applications to cloud infrastructure, I specialize in building scalable, 
+                        user-centric solutions that merge creativity with cutting-edge technology. Every project 
+                        is an opportunity to shape tomorrow's digital landscape.
+                    </p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">3+ Years</div>
+                            <div class="stat-label">Coding Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">7+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">8+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">3+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="about-circle">
+                        <div class="about-circle-outer"></div>
+                        <div class="about-circle-inner">
+                            <div style="text-align: center;">
+                                <div class="about-icon">💻</div>
+                                <div class="about-visual-title">Full Stack Developer</div>
+                                <div class="about-visual-subtitle">React • Node.js • Cloud</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="skills-bg">
+            <div class="skills-grid-bg"></div>
+        </div>
+        
+        <h2 class="skills-title">Tech Arsenal</h2>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-name">React</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 90%;"></div>
+                </div>
+                <div class="skill-percentage">90%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 85%;"></div>
+                </div>
+                <div class="skill-percentage">85%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Node.js</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Python</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 75%;"></div>
+                </div>
+                <div class="skill-percentage">75%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">AWS</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 70%;"></div>
+                </div>
+                <div class="skill-percentage">70%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Docker</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 65%;"></div>
+                </div>
+                <div class="skill-percentage">65%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">MongoDB</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Git</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 85%;"></div>
+                </div>
+                <div class="skill-percentage">85%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="projects-bg">
+            <div class="projects-grid-bg"></div>
+            <div class="projects-particles"></div>
+            <div class="projects-particles"></div>
+            <div class="projects-particles"></div>
+        </div>
+        
+        <h2 class="projects-title">Featured Projects</h2>
+
+        <div class="projects-grid">
+
+
+
+            <div class="project-card cyan">
+                <div class="project-tech-pattern">
+                    <div class="project-tech-square"></div>
+                </div>
+                
+                <div class="project-status">
+                    <div class="project-status-dot"></div>
+                    <span class="project-status-text">ACTIVE</span>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">&lt; CI/CD Pipelines /&gt;</h3>
+                    
+                    <p class="project-description">
+                        Automated deployment pipelines with infrastructure as code, container orchestration, and comprehensive testing workflows.
+                    </p>
+
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">GitHub Actions</span>
+                        <span class="project-tech-tag">Terraform</span>
+                        <span class="project-tech-tag">Docker</span>
+                        <span class="project-tech-tag">AWS</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/letroy969/ci-cd-infra-app/actions" class="project-link" target="_blank">
+                            <span class="project-link-icon">🔗</span>
+                            Pipeline Demo
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/ci-cd-infra-app" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">🐙</span>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card red">
+                <div class="project-tech-pattern">
+                    <div class="project-tech-square"></div>
+                </div>
+                
+                <div class="project-status">
+                    <div class="project-status-dot"></div>
+                    <span class="project-status-text">LIVE</span>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">&lt; AI Cybersecurity Honeypot /&gt;</h3>
+                    
+                    <p class="project-description">
+                        Advanced educational cybersecurity honeypot system with real-time attack detection, ML-powered analytics, and professional security dashboard for threat intelligence research.
+                    </p>
+
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">FastAPI</span>
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Machine Learning</span>
+                        <span class="project-tech-tag">Security</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://ai-cybersecurity-honeypot.onrender.com/overview" class="project-link" target="_blank">
+                            <span class="project-link-icon">🛡️</span>
+                            Live Demo
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/AI-Cybersecurity_honeypot" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">🐙</span>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Data Breach Insights Report Project -->
+            <div class="project-card green">
+                <div class="project-tech-pattern">
+                    <div class="project-tech-square"></div>
+                </div>
+                
+                <div class="project-status">
+                    <div class="project-status-dot"></div>
+                    <span class="project-status-text">COMPLETE</span>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">&lt; Data Breach Insights Report /&gt;</h3>
+                    
+                    <p class="project-description">
+                        Comprehensive data analysis project with Excel pivot tables, Power BI dashboards, SQL queries, and machine learning models (87% accuracy). Professional executive reporting and foundation dataset for cybersecurity risk management.
+                    </p>
+
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Power BI</span>
+                        <span class="project-tech-tag">Excel</span>
+                        <span class="project-tech-tag">SQL</span>
+                        <span class="project-tech-tag">Machine Learning</span>
+                        <span class="project-tech-tag">Pandas</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://letroy969.github.io/Databreach_insight-report/" class="project-link" target="_blank">
+                            <span class="project-link-icon">📊</span>
+                            Live Data
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/Databreach_insight-report" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">🐙</span>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW PROJECT: Streamlit Data Breach Analyzer -->
+            <div class="project-card purple">
+                <div class="project-tech-pattern">
+                    <div class="project-tech-square"></div>
+                </div>
+                
+                <div class="project-status">
+                    <div class="project-status-dot"></div>
+                    <span class="project-status-text">LIVE</span>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">&lt; Data Breach Analyzer /&gt;</h3>
+                    
+                    <p class="project-description">
+                        Interactive Streamlit web application with professional dark theme UI, real-time Plotly visualizations, multi-format file upload, AI insights, and export capabilities. Deployed live on Streamlit Cloud.
+                    </p>
+
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">Streamlit</span>
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Plotly</span>
+                        <span class="project-tech-tag">Pandas</span>
+                        <span class="project-tech-tag">AI Insights</span>
+                        <span class="project-tech-tag">Cloud Deploy</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://databreachanalyzer-dd7mg8huxygz2weddbwqmq.streamlit.app/" class="project-link" target="_blank">
+                            <span class="project-link-icon">🚀</span>
+                            Live App
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/DataBreach_Analyzer" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">🐙</span>
+                            Code
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/Databreach_insight-report" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">📊</span>
+                            Foundation Data
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="about">
+        <div class="about-bg">
+            <div class="about-line"></div>
+            <div class="about-line"></div>
+            <div class="about-data-line"></div>
+            <div class="about-data-line"></div>
+        </div>
+        
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">
+            <span style="position: absolute; left: -5rem; top: 50%; transform: translateY(-50%); color: #ff6b00; opacity: 0.5; font-size: 0.75rem;">CERT_VERIFIED</span>
+            Certifications
+            <span style="position: absolute; right: -5rem; top: 50%; transform: translateY(-50%); color: #ff00de; opacity: 0.5; font-size: 0.75rem;">AUTH_VALID</span>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+            <div class="about-card">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
+                </div>
+                
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #00f6ff, #ff00de, #ff6b00); opacity: 0.5;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="padding: 1rem; border-radius: 1rem; background: rgba(0, 246, 255, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); position: relative;">
+                        <div style="width: 2rem; height: 2rem; color: #00f6ff;">☁️</div>
+                        <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(0, 246, 255, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #00f6ff; font-family: monospace;">
+                            Oracle Cloud Infrastructure
+                            <span style="font-size: 0.75rem; color: #34d399; margin-left: 0.5rem; opacity: 0.7;">[ACTIVE]</span>
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                            2025 Generative AI Professional
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                            <span style="font-family: monospace;">&gt; Oracle</span>
+                            <span style="color: #00f6ff; font-family: monospace;">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
+                </div>
+                
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #00f6ff, #ff00de, #ff6b00); opacity: 0.5;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="padding: 1rem; border-radius: 1rem; background: rgba(0, 246, 255, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); position: relative;">
+                        <div style="width: 2rem; height: 2rem; color: #00f6ff;">☁️</div>
+                        <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(0, 246, 255, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #00f6ff; font-family: monospace;">
+                            AWS Cloud Practitioner
+                            <span style="font-size: 0.75rem; color: #34d399; margin-left: 0.5rem; opacity: 0.7;">[ACTIVE]</span>
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                            Cloud Fundamentals & Architecture
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                            <span style="font-family: monospace;">&gt; Amazon Web Services</span>
+                            <span style="color: #00f6ff; font-family: monospace;">2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="about">
+        <div class="about-bg">
+            <div class="about-line"></div>
+            <div class="about-line"></div>
+            <div class="about-data-line"></div>
+            <div class="about-data-line"></div>
+        </div>
+        
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">
+            <span style="position: absolute; left: -6rem; top: 50%; transform: translateY(-50%); color: #00f6ff; opacity: 0.5; font-size: 0.75rem;">COMM_OPEN</span>
+            Get In Touch
+            <span style="position: absolute; right: -6rem; top: 50%; transform: translateY(-50%); color: #ff00de; opacity: 0.5; font-size: 0.75rem;">SIGNAL_READY</span>
+        </h2>
+
+        <div class="about-card">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 2rem; background: linear-gradient(to right, rgba(0, 246, 255, 0.2), rgba(255, 0, 222, 0.2)); border-radius: 1.5rem 1.5rem 0 0; display: flex; align-items: center; padding: 0 1rem;">
+                <div style="display: flex; gap: 0.5rem;">
+                    <div style="width: 0.5rem; height: 0.5rem; background: #f87171; border-radius: 50%;"></div>
+                    <div style="width: 0.5rem; height: 0.5rem; background: #fbbf24; border-radius: 50%;"></div>
+                    <div style="width: 0.5rem; height: 0.5rem; background: #34d399; border-radius: 50%;"></div>
+                </div>
+                <span style="margin-left: 1rem; font-size: 0.75rem; color: #00f6ff; opacity: 0.7;">contact.exe</span>
+            </div>
+            
+            <div style="padding-top: 2rem;">
+                <p style="color: #d1d5db; font-size: 1.125rem; text-align: center; margin-bottom: 3rem;">
+                    &gt; Ready to build something amazing together? Let's connect and discuss your next project.
+                </p>
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem;">
+                    <a href="mailto:lindaletroy27@gmail.com" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
+                        <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #34d399; opacity: 0.7; font-family: monospace;">SMTP</div>
+                        <div style="position: absolute; top: 0.5rem; left: 0.5rem; display: flex; align-items: center; gap: 0.25rem;">
+                            <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                            <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">ONLINE</span>
+                        </div>
+                        <div style="width: 2rem; height: 2rem; color: #00f6ff; margin-bottom: 0.75rem; transition: transform 0.3s ease;">📧</div>
+                        <div style="color: white; font-weight: 600; margin-bottom: 0.25rem; font-family: monospace;">Email</div>
+                        <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">lindaletroy27@mail.com</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sihle-dladla-664036204/" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
+                        <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #34d399; opacity: 0.7; font-family: monospace;">HTTPS</div>
+                        <div style="position: absolute; top: 0.5rem; left: 0.5rem; display: flex; align-items: center; gap: 0.25rem;">
+                            <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                            <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">ONLINE</span>
+                        </div>
+                        <div style="width: 2rem; height: 2rem; color: #00f6ff; margin-bottom: 0.75rem; transition: transform 0.3s ease;">💼</div>
+                        <div style="color: white; font-weight: 600; margin-bottom: 0.25rem; font-family: monospace;">LinkedIn</div>
+                        <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">linkedin.com/in/sihle-dladla/</div>
+                    </a>
+                    <a href="https://github.com/letroy969" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
+                        <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #34d399; opacity: 0.7; font-family: monospace;">GIT</div>
+                        <div style="position: absolute; top: 0.5rem; left: 0.5rem; display: flex; align-items: center; gap: 0.25rem;">
+                            <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                            <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">ONLINE</span>
+                        </div>
+                        <div style="width: 2rem; height: 2rem; color: #00f6ff; margin-bottom: 0.75rem; transition: transform 0.3s ease;">🐙</div>
+                        <div style="color: white; font-weight: 600; margin-bottom: 0.25rem; font-family: monospace;">GitHub</div>
+                        <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">github.com/letroy969</div>
+                    </a>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <input type="text" placeholder="> Enter your name" style="width: 100%; padding: 1rem; border-radius: 1rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); color: white; font-family: monospace; font-size: 1rem; outline: none; transition: all 0.3s ease;">
+                    <input type="email" placeholder="> Enter your email" style="width: 100%; padding: 1rem; border-radius: 1rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); color: white; font-family: monospace; font-size: 1rem; outline: none; transition: all 0.3s ease;">
+                    <textarea placeholder="> Enter your message" rows="5" style="width: 100%; padding: 1rem; border-radius: 1rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); color: white; font-family: monospace; font-size: 1rem; outline: none; resize: none; transition: all 0.3s ease;"></textarea>
+                    <button type="button" style="width: 100%; padding: 1rem; border-radius: 1rem; background: linear-gradient(to right, #00f6ff, #ff00de); color: black; font-weight: bold; font-size: 1.125rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(0, 246, 255, 0.4); font-family: monospace;">
+                        &gt; TRANSMIT MESSAGE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 3rem 1.5rem; text-align: center; border-top: 1px solid #374151; position: relative;">
+        <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: 0.1;">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(to right, transparent, #00f6ff, transparent);"></div>
+            <div style="position: absolute; top: 1.5rem; left: 25%; width: 2rem; height: 2rem; border: 1px solid rgba(255, 0, 222, 0.3); transform: rotate(45deg);"></div>
+            <div style="position: absolute; top: 1.5rem; right: 25%; width: 1.5rem; height: 1.5rem; border: 1px solid rgba(255, 107, 0, 0.3);"></div>
+        </div>
+        
+        <div style="max-width: 64rem; margin: 0 auto; position: relative;">
+            <p style="color: #9ca3af; margin-bottom: 1.5rem; font-family: monospace;">
+                <span style="color: #00f6ff;">&gt;</span> © 2025 Sihle Dladla. Crafting the future, one line of code at a time. <span style="color: #ff00de;">&lt;</span>
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="#" style="color: #9ca3af; transition: color 0.3s ease; text-decoration: none; position: relative; display: block;">
+                    <div style="width: 1.5rem; height: 1.5rem;">🐙</div>
+                </a>
+                <a href="#" style="color: #9ca3af; transition: color 0.3s ease; text-decoration: none; position: relative; display: block;">
+                    <div style="width: 1.5rem; height: 1.5rem;">💼</div>
+                </a>
+                <a href="#" style="color: #9ca3af; transition: color 0.3s ease; text-decoration: none; position: relative; display: block;">
+                    <div style="width: 1.5rem; height: 1.5rem;">📧</div>
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; font-size: 0.75rem; font-family: monospace; color: #6b7280;">
+                <span style="display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.5rem; height: 0.5rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    SYSTEM_ONLINE
+                </span>
+                <span>|</span>
+                <span>UPTIME: 24/7</span>
+                <span>|</span>
+                <span style="color: #00f6ff;">v2.0.49</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const characters = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = characters[Math.floor(Math.random() * characters.length)];
+                char.style.left = Math.random() * 100 + '%';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 2 + 's';
+                matrixContainer.appendChild(char);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize matrix rain when page loads
+        document.addEventListener('DOMContentLoaded', createMatrixRain);
+        
+        // 3D Space Environment Interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const spaceObjects = document.querySelectorAll('.space-object');
+            const spaceEnvironment = document.querySelector('.space-environment');
+            
+            // Mouse movement parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = (e.clientX / window.innerWidth) - 0.5;
+                const mouseY = (e.clientY / window.innerHeight) - 0.5;
+                
+                spaceObjects.forEach((obj, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = mouseX * speed * 20;
+                    const y = mouseY * speed * 20;
+                    
+                    obj.style.transform = obj.style.transform.replace(/translateZ\([^)]*\)/, '') + 
+                        ` translateZ(${20 + (index * 10)}px)`;
+                    obj.style.transform += ` translateX(${x}px) translateY(${y}px)`;
+                });
+            });
+            
+            // Object click interactions
+            spaceObjects.forEach(obj => {
+                obj.addEventListener('click', function() {
+                    // Add pulse effect
+                    this.style.animation = 'none';
+                    this.offsetHeight; // Trigger reflow
+                    this.style.animation = null;
+                    
+                    // Add temporary glow
+                    this.style.filter = 'brightness(1.5) drop-shadow(0 0 20px rgba(138, 43, 226, 0.8))';
+                    setTimeout(() => {
+                        this.style.filter = '';
+                    }, 1000);
+                });
+                
+                // Hover sound effect simulation (visual feedback)
+                obj.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                obj.addEventListener('mouseleave', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+            
+          // Keyboard navigation
+          let currentObjectIndex = 0;
+          
+          document.addEventListener('keydown', function(e) {
+              const objects = Array.from(spaceObjects);
+              
+              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                  e.preventDefault();
+                  currentObjectIndex = (currentObjectIndex + 1) % objects.length;
+                  highlightObject(objects, currentObjectIndex);
+              } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                  e.preventDefault();
+                  currentObjectIndex = (currentObjectIndex - 1 + objects.length) % objects.length;
+                  highlightObject(objects, currentObjectIndex);
+              }
+          });
+          
+          function highlightObject(objects, index) {
+              objects.forEach((obj, i) => {
+                  if (i === index) {
+                      obj.style.filter = 'brightness(1.3) drop-shadow(0 0 15px rgba(138, 43, 226, 0.6))';
+                      // Smooth scroll to the object's container
+                      const heroSection = document.querySelector('.hero');
+                      if (heroSection) {
+                          heroSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                  } else {
+                      obj.style.filter = '';
+                  }
+              });
+          }
+            
+            // Touch interactions for mobile
+            let touchStartX = 0;
+            let touchStartY = 0;
+            
+            spaceEnvironment.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+            
+            spaceEnvironment.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                
+                const deltaX = (touchX - touchStartX) * 0.1;
+                const deltaY = (touchY - touchStartY) * 0.1;
+                
+                spaceObjects.forEach((obj, index) => {
+                    const speed = (index + 1) * 0.3;
+                    obj.style.transform += ` translateX(${deltaX * speed}px) translateY(${deltaY * speed}px)`;
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
