@@ -1,9 +1,26 @@
+/* Global Scroll Performance Optimizations */
+section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+
+/* Optimize transitions globally */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 /* About Section */
 .about {
     padding: 5rem 1.5rem;
     max-width: 72rem;
     margin: 0 auto;
     position: relative;
+    transform: translateZ(0);
+    will-change: scroll-position;
 }
 
 .about-bg {
@@ -60,8 +77,10 @@
     border-radius: 1.5rem;
     border: 1px solid rgba(0, 246, 255, 0.3);
     box-shadow: 0 0 50px rgba(0, 246, 255, 0.2);
-    transition: all 0.5s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
 }
 
 .about-card::before {
@@ -78,14 +97,14 @@
 
 .about-card:hover {
     box-shadow: 0 0 80px rgba(0, 246, 255, 0.3);
-    transform: translateY(-5px);
+    transform: translate3d(0, -5px, 0);
 }
 
 /* Certificate card hover effects */
 a .about-card:hover {
     box-shadow: 0 0 80px rgba(255, 107, 0, 0.4);
     border-color: rgba(255, 107, 0, 0.5);
-    transform: translateY(-5px) scale(1.02);
+    transform: translate3d(0, -5px, 0) scale(1.02);
 }
 
 .about-card::after {
@@ -245,6 +264,8 @@ a .about-card:hover {
 
 /* Skills Section */
 .skills {
+    transform: translateZ(0);
+    will-change: scroll-position;
     padding: 5rem 1.5rem;
     max-width: 72rem;
     margin: 0 auto;
@@ -362,6 +383,8 @@ a .about-card:hover {
 
 /* Projects Section */
 .projects {
+    transform: translateZ(0);
+    will-change: scroll-position;
     padding: 5rem 1.5rem;
     max-width: 80rem;
     margin: 0 auto;
@@ -471,14 +494,16 @@ a .about-card:hover {
     backdrop-filter: blur(16px);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(0, 246, 255, 0.3);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    transform: translateZ(0);
+    will-change: transform, box-shadow, border-color;
 }
 
 .project-card:hover {
     border-color: rgba(0, 246, 255, 0.6);
     box-shadow: 0 0 30px rgba(0, 246, 255, 0.3);
-    transform: scale(1.02);
+    transform: translateZ(0) scale(1.02);
 }
 
 .project-card.pink {
