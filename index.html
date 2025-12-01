@@ -369,22 +369,33 @@
         .hero-text-section {
             text-align: center;
             animation: slideInRight 1s ease-out 0.4s both;
+            /* Performance optimizations for smooth scrolling */
+            transform: translateZ(0);
+            will-change: transform, opacity;
+            contain: layout style paint;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         @keyframes slideInRight {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translate3d(50px, 0, 0);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
         .hero-text-wrapper {
             position: relative;
             z-index: 5;
+            /* Performance optimizations for smooth scrolling */
+            transform: translateZ(0);
+            contain: layout style paint;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
 
@@ -396,6 +407,8 @@
         /* Hero Text Typography & Layout */
         .hero-text-wrapper {
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            /* Additional performance optimization */
+            isolation: isolate;
         }
 
         .hero-greeting {
@@ -423,6 +436,13 @@
             font-family: 'Space Grotesk', sans-serif;
             opacity: 1;
             animation: fadeUpIn 0.8s ease-out 0.2s forwards;
+            /* Performance optimizations for smooth scrolling */
+            transform: translateZ(0);
+            will-change: transform, opacity;
+            contain: layout style paint;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            isolation: isolate;
         }
 
         .title-name {
@@ -434,14 +454,22 @@
             position: relative;
             animation: titleShimmer 3s ease-in-out infinite;
             letter-spacing: -0.02em;
+            /* Performance optimizations */
+            transform: translateZ(0);
+            will-change: filter;
+            contain: layout style paint;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         @keyframes titleShimmer {
             0%, 100% {
                 filter: brightness(1) drop-shadow(0 0 25px rgba(255, 107, 0, 0.4));
+                transform: translateZ(0);
             }
             50% {
                 filter: brightness(1.2) drop-shadow(0 0 35px rgba(255, 20, 147, 0.5));
+                transform: translateZ(0);
             }
         }
 
@@ -549,11 +577,11 @@
         @keyframes fadeUpIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translate3d(0, 30px, 0);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
