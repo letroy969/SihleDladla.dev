@@ -421,7 +421,7 @@
             line-height: 1.1;
             margin-bottom: 1rem;
             font-family: 'Space Grotesk', sans-serif;
-            opacity: 0;
+            opacity: 1;
             animation: fadeUpIn 0.8s ease-out 0.2s forwards;
         }
 
@@ -564,6 +564,11 @@
 
         [data-animate].animated {
             animation: fadeUpIn 0.8s ease-out forwards;
+        }
+
+        /* Ensure hero title is always visible */
+        .hero-title[data-animate] {
+            opacity: 1;
         }
 
         @keyframes descriptionFade {
@@ -3929,7 +3934,6 @@
 
         // Enhanced Smooth Scrolling with Performance Optimization
         let isScrolling = false;
-        let scrollTimeout;
 
         // Smooth scrolling for navigation links with enhanced performance
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
