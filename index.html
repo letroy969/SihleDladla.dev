@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIHLE DLADLA - Futuristic Software Developer</title>
+    <title>SIHLE DLADLA -  Software Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="portfolio-sections.css">
     <style>
         * {
@@ -107,184 +108,677 @@
             padding: 1.5rem;
         }
 
+        /* Hero Content - Professional Design */
         .hero-content {
             position: relative;
             z-index: 10;
-            max-width: 1200px;
             width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: calc(100vh - 120px);
         }
 
-        .galaxy-container {
+        .hero-main-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Image Section */
+        .hero-profile-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-image-wrapper {
             position: relative;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.1) 0%, transparent 70%),
-                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 60, 0.8) 100%);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 50px;
-            padding: 4rem;
-            backdrop-filter: blur(20px);
+            width: 320px;
+            height: 320px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .profile-glow {
+            position: absolute;
+            inset: -30px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.4), transparent 70%);
+            border-radius: 50%;
+            animation: glowPulse 3s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+
+        .profile-border-ring {
+            position: absolute;
+            inset: -10px;
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 50%;
+            animation: ringRotate 20s linear infinite;
+            z-index: 1;
+        }
+
+        .profile-border-ring::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(0, 246, 255, 0.3);
+            border-radius: 50%;
+            animation: ringRotate 15s linear infinite reverse;
+        }
+
+        @keyframes ringRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 246, 255, 0.1));
+            border: 3px solid rgba(138, 43, 226, 0.6);
             box-shadow: 
-                0 0 100px rgba(138, 43, 226, 0.4),
-                0 0 200px rgba(75, 0, 130, 0.3),
-                inset 0 0 100px rgba(138, 43, 226, 0.1);
-            animation: galaxyFloat 6s ease-in-out infinite;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            overflow: hidden;
+                0 0 40px rgba(138, 43, 226, 0.5),
+                0 0 80px rgba(138, 43, 226, 0.3),
+                inset 0 0 40px rgba(138, 43, 226, 0.2);
+            z-index: 2;
         }
 
-        .galaxy-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.05) 0%, transparent 50%);
-            animation: galaxyRotate 20s linear infinite;
-            z-index: -1;
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            filter: brightness(1.1) contrast(1.05);
+            transition: transform 0.3s ease;
         }
 
-        .galaxy-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                conic-gradient(from 0deg at 50% 50%, 
-                    transparent 0deg, 
-                    rgba(138, 43, 226, 0.1) 60deg, 
-                    transparent 120deg,
-                    rgba(75, 0, 130, 0.1) 180deg,
-                    transparent 240deg,
-                    rgba(138, 43, 226, 0.1) 300deg,
-                    transparent 360deg);
-            border-radius: 50px;
-            z-index: -2;
-            animation: galaxySpin 15s linear infinite;
+        .profile-image-container:hover .profile-image {
+            transform: scale(1.05);
         }
 
-        .galaxy-stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
-        }
-
-        .star:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
-        .star:nth-child(2) { top: 30%; right: 25%; animation-delay: 1s; }
-        .star:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 2s; }
-        .star:nth-child(4) { top: 60%; right: 40%; animation-delay: 0.5s; }
-        .star:nth-child(5) { bottom: 20%; right: 20%; animation-delay: 1.5s; }
-        .star:nth-child(6) { top: 45%; left: 60%; animation-delay: 2.5s; }
-        .star:nth-child(7) { top: 15%; left: 70%; animation-delay: 0.8s; }
-        .star:nth-child(8) { bottom: 45%; right: 60%; animation-delay: 1.8s; }
-
-        .galaxy-rings {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 50%;
-            animation: ringRotate 25s linear infinite;
-        }
-
-        .galaxy-rings::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 1px solid rgba(75, 0, 130, 0.3);
-            border-radius: 50%;
-            animation: ringRotate 20s linear infinite reverse;
-        }
-
-        .galaxy-rings::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            border: 1px solid rgba(138, 43, 226, 0.4);
-            border-radius: 50%;
-            animation: ringRotate 15s linear infinite;
-        }
-
-        .scanning-line {
+        .profile-scan-overlay {
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 2px;
             background: linear-gradient(90deg, 
-                transparent, #ff1493, #00bfff, #ff1493, transparent);
-            animation: scanLine 3s ease-in-out infinite;
+                transparent, 
+                rgba(138, 43, 226, 0.8), 
+                rgba(0, 246, 255, 0.8), 
+                rgba(138, 43, 226, 0.8), 
+                transparent);
+            animation: scanLine 4s ease-in-out infinite;
+            z-index: 3;
         }
 
-        @keyframes galaxyFloat {
-            0%, 100% {
-                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-            }
-            25% {
-                transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+        @keyframes scanLine {
+            0% {
+                left: -100%;
+                top: 0;
             }
             50% {
-                transform: translateY(-10px) rotateX(0deg) rotateY(10deg);
+                left: 100%;
+                top: 0;
             }
-            75% {
-                transform: translateY(-15px) rotateX(-5deg) rotateY(5deg);
+            51% {
+                left: 100%;
+                top: 100%;
+            }
+            100% {
+                left: -100%;
+                top: 100%;
             }
         }
 
-        @keyframes galaxyRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .profile-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
         }
 
-        @keyframes galaxySpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .profile-corner-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(138, 43, 226, 0.8);
+            z-index: 3;
+            animation: cornerPulse 2s ease-in-out infinite;
         }
 
-        @keyframes ringRotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes cornerPulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        .profile-corner-decoration.top-left-corner {
+            top: -15px;
+            left: -15px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 8px;
+        }
+
+        .profile-corner-decoration.top-right-corner {
+            top: -15px;
+            right: -15px;
+            border-left: none;
+            border-bottom: none;
+            border-top-right-radius: 8px;
+        }
+
+        .profile-corner-decoration.bottom-left-corner {
+            bottom: -15px;
+            left: -15px;
+            border-right: none;
+            border-top: none;
+            border-bottom-left-radius: 8px;
+        }
+
+        .profile-corner-decoration.bottom-right-corner {
+            bottom: -15px;
+            right: -15px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Hero Text Section */
+        .hero-text-section {
+            text-align: center;
+            animation: slideInRight 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text-wrapper {
+            position: relative;
+            z-index: 5;
+        }
+
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hero Text Typography & Layout */
+        .hero-text-wrapper {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .hero-greeting {
+            font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+            font-weight: 500;
+            color: rgba(255, 107, 0, 0.85);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease-out forwards;
+        }
+
+        .greeting-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease-out 0.2s forwards;
+        }
+
+        .title-name {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff1493 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: titleShimmer 3s ease-in-out infinite;
+            letter-spacing: -0.02em;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 25px rgba(255, 107, 0, 0.4));
+            }
+            50% {
+                filter: brightness(1.2) drop-shadow(0 0 35px rgba(255, 20, 147, 0.5));
+            }
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease-out 0.4s forwards;
+        }
+
+        .tagline-bracket {
+            color: rgba(255, 107, 0, 0.9);
+            font-weight: 600;
+            margin: 0 0.25rem;
+        }
+
+        .tagline-text {
+            color: rgba(255, 20, 147, 0.95);
+            font-weight: 500;
+        }
+
+        .hero-description-wrapper {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease-out 0.6s forwards;
+        }
+
+        .hero-description-main {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .hero-description-secondary {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            letter-spacing: -0.005em;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeUpIn 0.8s ease-out 0.8s forwards;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .tag-label {
+            font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+            font-weight: 600;
+            color: rgba(255, 107, 0, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .tag-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag-item {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: clamp(0.875rem, 1.2vw, 1rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: default;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .tag-item:hover {
+            background: rgba(255, 107, 0, 0.2);
+            border-color: rgba(255, 107, 0, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Motion Effects */
+        @keyframes fadeUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Intersection Observer Animation */
+        [data-animate] {
+            opacity: 0;
+        }
+
+        [data-animate].animated {
+            animation: fadeUpIn 0.8s ease-out forwards;
+        }
+
+        @keyframes descriptionFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            animation: statsFade 1s ease-out 1.4s both;
+        }
+
+        @keyframes statsFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #8a2be2, #00f6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, rgba(138, 43, 226, 0.5), transparent);
+        }
+
+        /* CTA Buttons Enhanced */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            animation: buttonsFade 1s ease-out 1.6s both;
+        }
+
+        @keyframes buttonsFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 2px solid;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            border-color: #ff6b00;
+            color: #ff6b00;
+            background: rgba(255, 107, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: #ff6b00;
+            color: #000;
+            box-shadow: 0 0 40px rgba(255, 107, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border-color: rgba(255, 20, 147, 0.6);
+            color: rgba(255, 20, 147, 0.9);
+            background: rgba(255, 20, 147, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 20, 147, 0.2);
+            border-color: #ff1493;
+            color: #ff1493;
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            font-size: 1.125rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: scale(1.1);
+        }
+
+        .btn-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .hero-main-container {
+                grid-template-columns: 1fr 1.2fr;
+                gap: 4rem;
+            }
+
+            .hero-text-section {
+                text-align: left;
+            }
+
+            .hero-description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .hero-stats {
+                justify-content: flex-start;
+            }
+
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-image-wrapper {
+                width: 260px;
+                height: 260px;
+            }
+
+            .hero-text-wrapper {
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .hero-tags {
+                align-items: center;
+            }
+
+            .tag-items {
+                justify-content: center;
+            }
+
+            .hero-description-wrapper {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-image-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+            }
+
+            .tag-item {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.75rem;
+            }
         }
 
         .hero-cityscape-bg {
@@ -1960,39 +2454,6 @@
             text-stroke: 1px rgba(135, 206, 250, 0.6);
         }
 
-        .hero h1::before {
-            content: 'SIHLE DLADLA';
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: rgba(135, 206, 250, 0.8);
-            transform: translateZ(-8px) translateX(2px) translateY(2px);
-            opacity: 0.7;
-            z-index: -1;
-            text-shadow: 
-                0 0 3px #87cefa,
-                0 0 6px #87cefa,
-                0 0 9px #87cefa,
-                0 0 12px #87cefa;
-            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.4);
-            text-stroke: 1px rgba(135, 206, 250, 0.4);
-        }
-
-        .hero h1::after {
-            content: 'SIHLE DLADLA';
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: rgba(135, 206, 250, 0.4);
-            transform: translateZ(-16px) translateX(4px) translateY(4px);
-            opacity: 0.5;
-            z-index: -2;
-            text-shadow: 
-                0 0 2px #87cefa,
-                0 0 4px #87cefa;
-            -webkit-text-stroke: 1px rgba(135, 206, 250, 0.2);
-            text-stroke: 1px rgba(135, 206, 250, 0.2);
-        }
 
         @keyframes blockFloat {
             0%, 100% {
@@ -2148,6 +2609,10 @@
                 <span class="nav-icon">🔗</span>
                 <span>Projects</span>
             </a>
+            <a href="#skills" class="nav-link">
+                <span class="nav-icon">⚡</span>
+                <span>Tech</span>
+            </a>
             <a href="#certificates" class="nav-link">
                 <span class="nav-icon">🏆</span>
                 <span>Certificates</span>
@@ -2211,163 +2676,83 @@
             <div class="holo-element holo-5"></div>
             
             <!-- Name Object - 3D Flying Sci-Fi Raft -->
-            <div class="space-object name-object">
-                <div class="sci-fi-raft">
-                    <!-- Main Hull -->
-                    <div class="raft-hull">
-                        <div class="hull-panels">
-                            <div class="panel panel-1"></div>
-                            <div class="panel panel-2"></div>
-                            <div class="panel panel-3"></div>
-                            <div class="panel panel-4"></div>
-                        </div>
-                        <div class="hull-lights">
-                            <div class="light light-1"></div>
-                            <div class="light light-2"></div>
-                            <div class="light light-3"></div>
-                            <div class="light light-4"></div>
-                            <div class="light light-5"></div>
-                            <div class="light light-6"></div>
-                        </div>
-                        <div class="hull-details">
-                            <div class="detail-line line-1"></div>
-                            <div class="detail-line line-2"></div>
-                            <div class="detail-line line-3"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Name Display -->
-                    <div class="name-display">
-                        <div class="display-frame"></div>
-                        <div class="display-screen">
-                            <h1>SIHLE DLADLA</h1>
-                            <div class="display-scan"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Thrusters -->
-                    <div class="thrusters">
-                        <div class="thruster thruster-1">
-                            <div class="thruster-nozzle"></div>
-                            <div class="thruster-flame"></div>
-                        </div>
-                        <div class="thruster thruster-2">
-                            <div class="thruster-nozzle"></div>
-                            <div class="thruster-flame"></div>
-                        </div>
-                        <div class="thruster thruster-3">
-                            <div class="thruster-nozzle"></div>
-                            <div class="thruster-flame"></div>
-                        </div>
-                        <div class="thruster thruster-4">
-                            <div class="thruster-nozzle"></div>
-                            <div class="thruster-flame"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Wing Extensions -->
-                    <div class="wings">
-                        <div class="wing wing-left">
-                            <div class="wing-light"></div>
-                            <div class="wing-detail"></div>
-                        </div>
-                        <div class="wing wing-right">
-                            <div class="wing-light"></div>
-                            <div class="wing-detail"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Energy Trails -->
-                    <div class="energy-trails">
-                        <div class="trail trail-1"></div>
-                        <div class="trail trail-2"></div>
-                        <div class="trail trail-3"></div>
-                    </div>
-                    
-                    <!-- Exhaust Particles -->
-                    <div class="exhaust-particles">
-                        <div class="particle particle-1"></div>
-                        <div class="particle particle-2"></div>
-                        <div class="particle particle-3"></div>
-                        <div class="particle particle-4"></div>
-                        <div class="particle particle-5"></div>
-                        <div class="particle particle-6"></div>
-                    </div>
-                </div>
-            </div>
+            <div class="space-object name-object"></div>
             
             <!-- Supporting Object - Energy Field Generator -->
-            <div class="space-object subtitle-object">
-                <div class="energy-generator">
-                    <div class="generator-core">
-                        <div class="core-ring ring-1"></div>
-                        <div class="core-ring ring-2"></div>
-                        <div class="core-ring ring-3"></div>
-                        <div class="core-center"></div>
-                    </div>
-                    <div class="energy-beams">
-                        <div class="beam beam-1"></div>
-                        <div class="beam beam-2"></div>
-                        <div class="beam beam-3"></div>
-                        <div class="beam beam-4"></div>
-                    </div>
-                    <div class="generator-particles">
-                        <div class="particle p-1"></div>
-                        <div class="particle p-2"></div>
-                        <div class="particle p-3"></div>
-                        <div class="particle p-4"></div>
-                    </div>
-                </div>
-            </div>
+            <div class="space-object subtitle-object"></div>
             
             <!-- Description Object - Cyberpunk Terminal -->
-            <div class="space-object description-object">
-                <div class="cyber-terminal">
-                    <div class="terminal-screen">
-                        <div class="screen-glow"></div>
-                        <div class="terminal-header">
-                            <div class="header-lights"></div>
-                            <div class="terminal-title">SYSTEM_ACCESS</div>
-                        </div>
-                        <div class="terminal-content">
-                            <div class="code-lines">
-                                <div class="code-line">$> INITIALIZING...</div>
-                                <div class="code-line">$> LOADING PROFILE...</div>
-                                <div class="code-line">$> ACCESS GRANTED</div>
-                            </div>
-                            <p class="description">
-                                Crafting tomorrow's digital experiences through innovative code and cutting-edge technology
-                            </p>
-                        </div>
-                        <div class="terminal-cursor"></div>
-                    </div>
-                    <div class="terminal-base">
-                        <div class="base-lights"></div>
-                        <div class="terminal-ports"></div>
-                    </div>
-                </div>
-            </div>
+            <div class="space-object description-object"></div>
             
             <!-- Buttons Object - Cyberpunk Control Panel -->
-            <div class="space-object buttons-object">
-                <div class="cyber-control-panel">
-                    <div class="panel-frame">
-                        <div class="panel-lights"></div>
-                        <div class="control-buttons">
-                            <a href="#projects" class="cyber-btn btn-primary">
-                                <div class="btn-glow"></div>
-                                <span class="btn-text">VIEW PROJECTS</span>
-                                <div class="btn-indicator"></div>
+            <div class="space-object buttons-object"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-main-container">
+                <!-- Profile Image Section -->
+                <div class="hero-profile-section">
+                    <div class="profile-image-wrapper">
+                        <div class="profile-glow"></div>
+                        <div class="profile-border-ring"></div>
+                        <div class="profile-image-container">
+                            <img src="resources/photos/photo.jpg" alt="Sihle Dladla - Software Developer" class="profile-image">
+                            <div class="profile-scan-overlay"></div>
+                            <div class="profile-grid-overlay"></div>
+                        </div>
+                        <div class="profile-corner-decoration top-left-corner"></div>
+                        <div class="profile-corner-decoration top-right-corner"></div>
+                        <div class="profile-corner-decoration bottom-left-corner"></div>
+                        <div class="profile-corner-decoration bottom-right-corner"></div>
+                    </div>
+                </div>
+
+                <!-- Text Content Section -->
+                <div class="hero-text-section">
+                    <div class="hero-text-wrapper">
+                        <div class="hero-greeting" data-animate="fade-up" data-delay="0.2">
+                            <span class="greeting-text">Hello, I'm</span>
+                        </div>
+                        
+                        <h1 class="hero-title" data-animate="fade-up" data-delay="0.4">
+                            <span class="title-name">Sihle Dladla</span>
+                        </h1>
+                        
+                        <div class="hero-tagline" data-animate="fade-up" data-delay="0.6">
+                            <span class="tagline-bracket">&lt;</span>
+                            <span class="tagline-text">Software Developer</span>
+                            <span class="tagline-bracket">/&gt;</span>
+                        </div>
+                        
+                        <div class="hero-description-wrapper" data-animate="fade-up" data-delay="0.8">
+                            <p class="hero-description-main">
+                                A steady-growing developer building purposeful, scalable digital experiences.
+                            </p>
+                        </div>
+                        
+                        <div class="hero-tags" data-animate="fade-up" data-delay="1.0">
+                            <div class="tag-group">
+                                <span class="tag-label">Aspirations</span>
+                                <div class="tag-items">
+                                    <span class="tag-item">AI</span>
+                                    <span class="tag-item">Cloud Computing</span>
+                                    <span class="tag-item">Cybersecurity</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-buttons" data-animate="fade-up" data-delay="1.2">
+                            <a href="#projects" class="btn btn-primary">
+                                <span class="btn-text">Discover My Projects</span>
+                                <span class="btn-arrow">→</span>
                             </a>
-                            <a href="#contact" class="cyber-btn btn-secondary">
-                                <div class="btn-glow"></div>
-                                <span class="btn-text">GET IN TOUCH</span>
-                                <div class="btn-indicator"></div>
+                            <a href="resources/CV And transcripts/SihleDladla_Merged.pdf" download="SihleDladla_CV.pdf" class="btn btn-secondary">
+                                <span class="btn-text">Download CV</span>
+                                <span class="btn-icon">📄</span>
                             </a>
                         </div>
-                        <div class="panel-wiring"></div>
                     </div>
-                    <div class="panel-energy"></div>
                 </div>
             </div>
         </div>
@@ -2436,7 +2821,7 @@
                             <div style="text-align: center;">
                                 <div class="about-icon">💻</div>
                                 <div class="about-visual-title">Full Stack Developer</div>
-                                <div class="about-visual-subtitle">React • Node.js • Cloud</div>
+                                <div class="about-visual-subtitle">Python • Cybersecurity • Cloud</div>
                             </div>
                         </div>
                     </div>
@@ -2446,7 +2831,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills">
+    <section id="skills" class="skills">
         <div class="skills-bg">
             <div class="skills-grid-bg"></div>
         </div>
@@ -2454,12 +2839,13 @@
         <h2 class="skills-title">Tech Arsenal</h2>
 
         <div class="skills-grid">
+            <!-- Programming Languages -->
             <div class="skill-card">
-                <div class="skill-name">React</div>
+                <div class="skill-name">Python</div>
                 <div class="skill-bar-container">
-                    <div class="skill-bar" style="background-color: #00f6ff; width: 90%;"></div>
+                    <div class="skill-bar" style="background-color: #ff00de; width: 85%;"></div>
                 </div>
-                <div class="skill-percentage">90%</div>
+                <div class="skill-percentage">85%</div>
             </div>
             <div class="skill-card">
                 <div class="skill-name">JavaScript</div>
@@ -2469,32 +2855,92 @@
                 <div class="skill-percentage">85%</div>
             </div>
             <div class="skill-card">
+                <div class="skill-name">Java</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 75%;"></div>
+                </div>
+                <div class="skill-percentage">75%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">C++</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 70%;"></div>
+                </div>
+                <div class="skill-percentage">70%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Kotlin</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 75%;"></div>
+                </div>
+                <div class="skill-percentage">75%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">PHP</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            
+            <!-- Web Technologies -->
+            <div class="skill-card">
+                <div class="skill-name">HTML</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 90%;"></div>
+                </div>
+                <div class="skill-percentage">90%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">CSS</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 90%;"></div>
+                </div>
+                <div class="skill-percentage">90%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">React</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 85%;"></div>
+                </div>
+                <div class="skill-percentage">85%</div>
+            </div>
+            <div class="skill-card">
                 <div class="skill-name">Node.js</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">FastAPI</div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
                 </div>
                 <div class="skill-percentage">80%</div>
             </div>
             <div class="skill-card">
-                <div class="skill-name">Python</div>
+                <div class="skill-name">Streamlit</div>
                 <div class="skill-bar-container">
-                    <div class="skill-bar" style="background-color: #ff00de; width: 75%;"></div>
+                    <div class="skill-bar" style="background-color: #ff00de; width: 85%;"></div>
                 </div>
-                <div class="skill-percentage">75%</div>
+                <div class="skill-percentage">85%</div>
+            </div>
+            
+            <!-- Databases -->
+            <div class="skill-card">
+                <div class="skill-name">MySQL</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 85%;"></div>
+                </div>
+                <div class="skill-percentage">85%</div>
             </div>
             <div class="skill-card">
-                <div class="skill-name">AWS</div>
+                <div class="skill-name">SQL</div>
                 <div class="skill-bar-container">
-                    <div class="skill-bar" style="background-color: #ff6b00; width: 70%;"></div>
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 85%;"></div>
                 </div>
-                <div class="skill-percentage">70%</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-name">Docker</div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="background-color: #00f6ff; width: 65%;"></div>
-                </div>
-                <div class="skill-percentage">65%</div>
+                <div class="skill-percentage">85%</div>
             </div>
             <div class="skill-card">
                 <div class="skill-name">MongoDB</div>
@@ -2503,12 +2949,79 @@
                 </div>
                 <div class="skill-percentage">80%</div>
             </div>
+            
+            <!-- Data Science & Analytics -->
             <div class="skill-card">
-                <div class="skill-name">Git</div>
+                <div class="skill-name">Pandas</div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="background-color: #ff6b00; width: 85%;"></div>
                 </div>
                 <div class="skill-percentage">85%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Machine Learning</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Power BI</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Excel</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 85%;"></div>
+                </div>
+                <div class="skill-percentage">85%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Plotly</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            
+            <!-- Cloud & DevOps -->
+            <div class="skill-card">
+                <div class="skill-name">AWS</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 75%;"></div>
+                </div>
+                <div class="skill-percentage">75%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Docker</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Terraform</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff00de; width: 75%;"></div>
+                </div>
+                <div class="skill-percentage">75%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">GitHub Actions</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #ff6b00; width: 80%;"></div>
+                </div>
+                <div class="skill-percentage">80%</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-name">Git</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="background-color: #00f6ff; width: 90%;"></div>
+                </div>
+                <div class="skill-percentage">90%</div>
             </div>
         </div>
     </section>
@@ -2526,39 +3039,57 @@
 
         <div class="projects-grid">
 
-
-
-            <div class="project-card cyan">
+            <!-- Student Card System Project -->
+            <div class="project-card orange">
                 <div class="project-tech-pattern">
                     <div class="project-tech-square"></div>
                 </div>
                 
                 <div class="project-status">
                     <div class="project-status-dot"></div>
-                    <span class="project-status-text">ACTIVE</span>
+                    <span class="project-status-text">LIVE</span>
+                </div>
+                
+                <!-- Project Visual Preview -->
+                <div class="project-preview">
+                    <div class="preview-card-visual">
+                        <div class="card-preview">
+                            <div class="card-header"></div>
+                            <div class="card-body">
+                                <div class="card-line"></div>
+                                <div class="card-line short"></div>
+                                <div class="card-chip"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="project-content">
-                    <h3 class="project-title">&lt; CI/CD Pipelines /&gt;</h3>
+                    <h3 class="project-title">&lt; Student Card System /&gt;</h3>
                     
                     <p class="project-description">
-                        Automated deployment pipelines with infrastructure as code, container orchestration, and comprehensive testing workflows.
+                        Web-based platform for students to request, create, and access virtual student cards. Features online registration, document upload, instant virtual card generation, and admin management tools for efficient card processing.
                     </p>
 
                     <div class="project-tech-stack">
-                        <span class="project-tech-tag">GitHub Actions</span>
-                        <span class="project-tech-tag">Terraform</span>
-                        <span class="project-tech-tag">Docker</span>
-                        <span class="project-tech-tag">AWS</span>
+                        <span class="project-tech-tag">HTML</span>
+                        <span class="project-tech-tag">CSS</span>
+                        <span class="project-tech-tag">JavaScript</span>
+                        <span class="project-tech-tag">PHP</span>
+                        <span class="project-tech-tag">MySQL</span>
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Flask</span>
+                        <span class="project-tech-tag">Face Detection</span>
+                        <span class="project-tech-tag">Verification APIs</span>
                     </div>
 
                     <div class="project-links">
-                        <a href="https://github.com/letroy969/ci-cd-infra-app/actions" class="project-link" target="_blank">
-                            <span class="project-link-icon">🔗</span>
-                            Pipeline Demo
+                        <a href="https://studentcardsystem.onrender.com" class="project-link" target="_blank">
+                            <span class="project-link-icon">🎓</span>
+                            Live Demo
                         </a>
                         
-                        <a href="https://github.com/letroy969/ci-cd-infra-app" class="project-link secondary" target="_blank">
+                        <a href="https://github.com/letroy969/StudentCardSystem" class="project-link secondary" target="_blank">
                             <span class="project-link-icon">🐙</span>
                             Code
                         </a>
@@ -2576,22 +3107,81 @@
                     <span class="project-status-text">LIVE</span>
                 </div>
                 
+                <!-- Project Visual Preview -->
+                <div class="project-preview">
+                    <div class="preview-network-visual">
+                        <!-- Central Honeypot Server -->
+                        <div class="honeypot-server">
+                            <div class="server-core"></div>
+                            <div class="server-ring ring-1"></div>
+                            <div class="server-ring ring-2"></div>
+                            <div class="server-ring ring-3"></div>
+                        </div>
+                        
+                        <!-- Network Nodes -->
+                        <div class="network-node node-1">
+                            <div class="node-pulse"></div>
+                        </div>
+                        <div class="network-node node-2">
+                            <div class="node-pulse"></div>
+                        </div>
+                        <div class="network-node node-3">
+                            <div class="node-pulse"></div>
+                        </div>
+                        <div class="network-node node-4">
+                            <div class="node-pulse"></div>
+                        </div>
+                        
+                        <!-- Connection Lines -->
+                        <div class="network-line line-1"></div>
+                        <div class="network-line line-2"></div>
+                        <div class="network-line line-3"></div>
+                        <div class="network-line line-4"></div>
+                        
+                        <!-- Threat Indicators -->
+                        <div class="threat-alert alert-1">
+                            <div class="alert-icon">⚠️</div>
+                        </div>
+                        <div class="threat-alert alert-2">
+                            <div class="alert-icon">🔒</div>
+                        </div>
+                        
+                        <!-- Security Shield -->
+                        <div class="security-shield">
+                            <div class="shield-layer layer-1"></div>
+                            <div class="shield-layer layer-2"></div>
+                        </div>
+                        
+                        <!-- Data Flow Particles -->
+                        <div class="data-particle particle-1"></div>
+                        <div class="data-particle particle-2"></div>
+                        <div class="data-particle particle-3"></div>
+                    </div>
+                </div>
+                
                 <div class="project-content">
                     <h3 class="project-title">&lt; AI Cybersecurity Honeypot /&gt;</h3>
                     
                     <p class="project-description">
-                        Advanced educational cybersecurity honeypot system with real-time attack detection, ML-powered analytics, and professional security dashboard for threat intelligence research.
+                        Sophisticated educational cybersecurity honeypot system that simulates vulnerable endpoints, collects attacker telemetry, and uses machine learning (Isolation Forest, Autoencoder) to classify and predict attacker behaviors.
                     </p>
 
                     <div class="project-tech-stack">
-                        <span class="project-tech-tag">FastAPI</span>
                         <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">FastAPI</span>
+                        <span class="project-tech-tag">Flask</span>
+                        <span class="project-tech-tag">React</span>
+                        <span class="project-tech-tag">TypeScript</span>
+                        <span class="project-tech-tag">PostgreSQL</span>
+                        <span class="project-tech-tag">PyTorch</span>
                         <span class="project-tech-tag">Machine Learning</span>
-                        <span class="project-tech-tag">Security</span>
+                        <span class="project-tech-tag">Docker</span>
+                        <span class="project-tech-tag">Redis</span>
+                        <span class="project-tech-tag">Elasticsearch</span>
                     </div>
 
                     <div class="project-links">
-                        <a href="https://ai-cybersecurity-honeypot.onrender.com/overview" class="project-link" target="_blank">
+                        <a href="https://letroy969.github.io/ai-cybersecurity-demo/" class="project-link" target="_blank">
                             <span class="project-link-icon">🛡️</span>
                             Live Demo
                         </a>
@@ -2614,6 +3204,85 @@
                 <div class="project-status">
                     <div class="project-status-dot"></div>
                     <span class="project-status-text">COMPLETE</span>
+                </div>
+                
+                <!-- Project Visual Preview -->
+                <div class="project-preview">
+                    <div class="preview-chart-visual-data">
+                        <!-- Animated Background -->
+                        <div class="chart-bg-animation">
+                            <div class="bg-glow glow-1"></div>
+                            <div class="bg-glow glow-2"></div>
+                            <div class="bg-glow glow-3"></div>
+                        </div>
+                        
+                        <!-- Chart Container -->
+                        <div class="data-chart-container">
+                            <!-- Grid Background -->
+                            <div class="chart-grid-bg">
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                            </div>
+                            
+                            <!-- Chart Bars -->
+                            <div class="chart-bars-container">
+                                <div class="data-bar-wrapper bar-data-1">
+                                    <div class="bar-shadow"></div>
+                                    <div class="data-bar">
+                                        <div class="bar-fill">
+                                            <div class="bar-highlight"></div>
+                                            <div class="bar-glow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-bar-wrapper bar-data-2">
+                                    <div class="bar-shadow"></div>
+                                    <div class="data-bar">
+                                        <div class="bar-fill">
+                                            <div class="bar-highlight"></div>
+                                            <div class="bar-glow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-bar-wrapper bar-data-3">
+                                    <div class="bar-shadow"></div>
+                                    <div class="data-bar">
+                                        <div class="bar-fill">
+                                            <div class="bar-highlight"></div>
+                                            <div class="bar-glow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-bar-wrapper bar-data-4">
+                                    <div class="bar-shadow"></div>
+                                    <div class="data-bar">
+                                        <div class="bar-fill">
+                                            <div class="bar-highlight"></div>
+                                            <div class="bar-glow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-bar-wrapper bar-data-5">
+                                    <div class="bar-shadow"></div>
+                                    <div class="data-bar">
+                                        <div class="bar-fill">
+                                            <div class="bar-highlight"></div>
+                                            <div class="bar-glow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- X-Axis Base -->
+                            <div class="x-axis-base"></div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="project-content">
@@ -2657,11 +3326,119 @@
                     <span class="project-status-text">LIVE</span>
                 </div>
                 
+                <!-- Project Visual Preview -->
+                <div class="project-preview">
+                    <div class="preview-interactive-chart">
+                        <!-- Animated Background -->
+                        <div class="analyzer-bg-animation">
+                            <div class="analyzer-glow glow-1"></div>
+                            <div class="analyzer-glow glow-2"></div>
+                            <div class="analyzer-glow glow-3"></div>
+                        </div>
+                        
+                        <div class="interactive-chart-container">
+                            <!-- Dashboard Grid Background -->
+                            <div class="dashboard-grid"></div>
+                            
+                            <!-- Main Chart Visualization -->
+                            <div class="chart-visualization">
+                                <div class="chart-bar-wrapper analyzer-bar-1">
+                                    <div class="bar-shadow-analyzer"></div>
+                                    <div class="chart-bar bar-1">
+                                        <div class="bar-gradient"></div>
+                                        <div class="bar-shine"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-wrapper analyzer-bar-2">
+                                    <div class="bar-shadow-analyzer"></div>
+                                    <div class="chart-bar bar-2">
+                                        <div class="bar-gradient"></div>
+                                        <div class="bar-shine"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-wrapper analyzer-bar-3">
+                                    <div class="bar-shadow-analyzer"></div>
+                                    <div class="chart-bar bar-3">
+                                        <div class="bar-gradient"></div>
+                                        <div class="bar-shine"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-wrapper analyzer-bar-4">
+                                    <div class="bar-shadow-analyzer"></div>
+                                    <div class="chart-bar bar-4">
+                                        <div class="bar-gradient"></div>
+                                        <div class="bar-shine"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-wrapper analyzer-bar-5">
+                                    <div class="bar-shadow-analyzer"></div>
+                                    <div class="chart-bar bar-5">
+                                        <div class="bar-gradient"></div>
+                                        <div class="bar-shine"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Animated Line Chart -->
+                            <div class="line-chart">
+                                <svg class="chart-svg" viewBox="0 0 200 100" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:rgba(255, 0, 222, 0.8);stop-opacity:1" />
+                                            <stop offset="50%" style="stop-color:rgba(255, 100, 255, 1);stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:rgba(255, 0, 222, 0.8);stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path class="chart-path" d="M 10,80 Q 50,60 90,40 T 170,20" />
+                                    <path class="chart-path path-2" d="M 10,70 Q 50,50 90,30 T 170,15" />
+                                </svg>
+                            </div>
+                            
+                            <!-- Enhanced Data Points -->
+                            <div class="data-point point-1">
+                                <div class="point-core"></div>
+                                <div class="point-ring"></div>
+                            </div>
+                            <div class="data-point point-2">
+                                <div class="point-core"></div>
+                                <div class="point-ring"></div>
+                            </div>
+                            <div class="data-point point-3">
+                                <div class="point-core"></div>
+                                <div class="point-ring"></div>
+                            </div>
+                            <div class="data-point point-4">
+                                <div class="point-core"></div>
+                                <div class="point-ring"></div>
+                            </div>
+                            
+                            <!-- AI Insight Indicator -->
+                            <div class="ai-insight">
+                                <div class="insight-icon">🤖</div>
+                                <div class="insight-pulse"></div>
+                                <div class="insight-glow"></div>
+                            </div>
+                            
+                            <!-- Enhanced Stats Display -->
+                            <div class="stats-display stat-1">
+                                <div class="stat-label">Accuracy</div>
+                                <div class="stat-value">87%</div>
+                                <div class="stat-glow"></div>
+                            </div>
+                            <div class="stats-display stat-2">
+                                <div class="stat-label">Records</div>
+                                <div class="stat-value">1.2K</div>
+                                <div class="stat-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="project-content">
-                    <h3 class="project-title">&lt; Data Breach Analyzer /&gt;</h3>
+                    <h3 class="project-title">&lt; Data Breach Insights Visualization /&gt;</h3>
                     
                     <p class="project-description">
-                        Interactive Streamlit web application with professional dark theme UI, real-time Plotly visualizations, multi-format file upload, AI insights, and export capabilities. Deployed live on Streamlit Cloud.
+                        Interactive data visualization dashboard for the Data Breach Insights Report. Professional Streamlit web application with real-time Plotly visualizations, dynamic charts, AI-powered insights, and comprehensive analytics. Transforms complex breach data into actionable insights with an intuitive interface.
                     </p>
 
                     <div class="project-tech-stack">
@@ -2692,6 +3469,74 @@
                 </div>
             </div>
 
+            <!-- CI/CD Pipelines Project -->
+            <div class="project-card cyan">
+                <div class="project-tech-pattern">
+                    <div class="project-tech-square"></div>
+                </div>
+                
+                <div class="project-status">
+                    <div class="project-status-dot"></div>
+                    <span class="project-status-text">IN PROGRESS</span>
+                </div>
+                
+                <!-- Project Visual Preview -->
+                <div class="project-preview">
+                    <div class="preview-pipeline-visual">
+                        <div class="pipeline-stage stage-1">
+                            <div class="pipeline-box">
+                                <div class="pipeline-box-icon">📦</div>
+                            </div>
+                        </div>
+                        <div class="pipeline-connector connector-1">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-flow-dot"></div>
+                        </div>
+                        <div class="pipeline-stage stage-2">
+                            <div class="pipeline-box">
+                                <div class="pipeline-box-icon">⚙️</div>
+                            </div>
+                        </div>
+                        <div class="pipeline-connector connector-2">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-flow-dot"></div>
+                        </div>
+                        <div class="pipeline-stage stage-3">
+                            <div class="pipeline-box">
+                                <div class="pipeline-box-icon">🚀</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">&lt; CI/CD Pipelines /&gt;</h3>
+                    
+                    <p class="project-description">
+                        Automated deployment pipelines with infrastructure as code, container orchestration, and comprehensive testing workflows.
+                    </p>
+
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">GitHub Actions</span>
+                        <span class="project-tech-tag">Terraform</span>
+                        <span class="project-tech-tag">Docker</span>
+                        <span class="project-tech-tag">AWS</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/letroy969/ci-cd-infra-app/actions" class="project-link" target="_blank">
+                            <span class="project-link-icon">🔗</span>
+                            Pipeline Demo
+                        </a>
+                        
+                        <a href="https://github.com/letroy969/ci-cd-infra-app" class="project-link secondary" target="_blank">
+                            <span class="project-link-icon">🐙</span>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -2710,66 +3555,206 @@
             <span style="position: absolute; right: -5rem; top: 50%; transform: translateY(-50%); color: #ff00de; opacity: 0.5; font-size: 0.75rem;">AUTH_VALID</span>
         </h2>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-            <div class="about-card">
+        <style>
+            .certificates-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            @media (max-width: 768px) {
+                .certificates-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <div class="certificates-grid">
+            <a href="resources/certificates/FNB ICT varsity certificate.pdf" target="_blank" style="text-decoration: none; display: block;">
+                <div class="about-card" style="cursor: pointer; transition: all 0.3s ease;">
                 <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
                     <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
                     <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
                 </div>
                 
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #00f6ff, #ff00de, #ff6b00); opacity: 0.5;"></div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #ff6b00, #ff00de, #00f6ff); opacity: 0.5;"></div>
                 
                 <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
-                    <div style="padding: 1rem; border-radius: 1rem; background: rgba(0, 246, 255, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); position: relative;">
-                        <div style="width: 2rem; height: 2rem; color: #00f6ff;">☁️</div>
-                        <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(0, 246, 255, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(255, 107, 0, 0.2); border: 1px solid rgba(255, 107, 0, 0.3); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #ff6b00;">🎓</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(255, 107, 0, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
                     </div>
                     
                     <div style="flex: 1;">
-                        <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #00f6ff; font-family: monospace;">
-                            Oracle Cloud Infrastructure
-                            <span style="font-size: 0.75rem; color: #34d399; margin-left: 0.5rem; opacity: 0.7;">[ACTIVE]</span>
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #ff6b00; font-family: monospace;">
+                                FNB ICT Varsity Certificate
                         </h3>
                         
                         <p style="color: #d1d5db; margin-bottom: 0.5rem;">
-                            2025 Generative AI Professional
+                                Information and Communication Technology
                         </p>
                         
                         <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
-                            <span style="font-family: monospace;">&gt; Oracle</span>
-                            <span style="color: #00f6ff; font-family: monospace;">2025</span>
+                                <span style="font-family: monospace;">&gt; FNB ICT Varsity</span>
+                                <span style="color: #ff6b00; font-family: monospace;">View PDF →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="resources/certificates/Introduction_to_Cybersecurity_certificate_lindaletroy27-gmail-com_8ba8e252-1654-4028-8417-ec5bc4523e46.pdf" target="_blank" style="text-decoration: none; display: block;">
+                <div class="about-card" style="cursor: pointer; transition: all 0.3s ease;">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
+                </div>
+                
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #ff6b00, #ff00de, #00f6ff); opacity: 0.5;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(255, 20, 147, 0.2); border: 1px solid rgba(255, 20, 147, 0.3); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #ff00de;">🛡️</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(255, 20, 147, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #ff00de; font-family: monospace;">
+                                Introduction to Cybersecurity
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                                Cybersecurity Fundamentals & Best Practices
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                                <span style="font-family: monospace;">&gt; Cybersecurity Course</span>
+                                <span style="color: #ff00de; font-family: monospace;">View PDF →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="resources/certificates/CourseraFoundationsOfCS.pdf" target="_blank" style="text-decoration: none; display: block;">
+                <div class="about-card" style="cursor: pointer; transition: all 0.3s ease;">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
+                </div>
+                
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #4285f4, #34a853, #ea4335); opacity: 0.5;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(66, 133, 244, 0.2); border: 1px solid rgba(66, 133, 244, 0.3); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #4285f4;">🛡️</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(66, 133, 244, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #4285f4; font-family: monospace;">
+                                Foundations of Cybersecurity
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                                Cybersecurity Fundamentals & Security Principles
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                                <span style="font-family: monospace;">&gt; Google</span>
+                                <span style="color: #4285f4; font-family: monospace;">View PDF →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <div class="about-card" style="cursor: default; transition: all 0.3s ease;">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #fbbf24; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #fbbf24; opacity: 0.7;">IN PROGRESS</span>
+                </div>
+                
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #fbbf24, #f59e0b, #d97706); opacity: 0.5;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(251, 191, 36, 0.2); border: 1px solid rgba(251, 191, 36, 0.3); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #fbbf24;">🔒</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(251, 191, 36, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #fbbf24; font-family: monospace;">
+                                Google Cybersecurity Professional Certificate
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                                Professional Cybersecurity Training & Certification
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                                <span style="font-family: monospace;">&gt; Coursera (Google)</span>
+                                <span style="color: #fbbf24; font-family: monospace;">Still in Progress →</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="about-card">
+            <div class="about-card" style="cursor: default; transition: all 0.3s ease; background: rgba(35, 47, 62, 0.3); border: 1px solid rgba(35, 47, 62, 0.5);">
                 <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
-                    <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
-                    <span style="font-size: 0.75rem; color: #34d399; opacity: 0.7;">VERIFIED</span>
+                    <div style="width: 0.375rem; height: 0.375rem; background: #fbbf24; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #fbbf24; opacity: 0.7;">IN PROGRESS</span>
                 </div>
                 
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #00f6ff, #ff00de, #ff6b00); opacity: 0.5;"></div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #232F3E, #146EB4, #232F3E); opacity: 0.7;"></div>
                 
                 <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
-                    <div style="padding: 1rem; border-radius: 1rem; background: rgba(0, 246, 255, 0.2); border: 1px solid rgba(0, 246, 255, 0.3); position: relative;">
-                        <div style="width: 2rem; height: 2rem; color: #00f6ff;">☁️</div>
-                        <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(0, 246, 255, 0.1); animation: pulse 2s ease-in-out infinite;"></div>
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(35, 47, 62, 0.4); border: 1px solid rgba(35, 47, 62, 0.6); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #FF9900;">☁️</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(35, 47, 62, 0.2); animation: pulse 2s ease-in-out infinite;"></div>
                     </div>
                     
                     <div style="flex: 1;">
-                        <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #00f6ff; font-family: monospace;">
-                            AWS Cloud Practitioner
-                            <span style="font-size: 0.75rem; color: #34d399; margin-left: 0.5rem; opacity: 0.7;">[ACTIVE]</span>
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #FF9900; font-family: monospace;">
+                                AWS Cloud Practitioner Essentials
                         </h3>
                         
                         <p style="color: #d1d5db; margin-bottom: 0.5rem;">
-                            Cloud Fundamentals & Architecture
+                                AWS Cloud Fundamentals & Cloud Computing Basics
                         </p>
                         
                         <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
-                            <span style="font-family: monospace;">&gt; Amazon Web Services</span>
-                            <span style="color: #00f6ff; font-family: monospace;">2024</span>
+                                <span style="font-family: monospace;">&gt; AWS Training</span>
+                                <span style="color: #fbbf24; font-family: monospace;">Still in Progress →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card" style="cursor: default; transition: all 0.3s ease; background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.3);">
+                <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
+                    <div style="width: 0.375rem; height: 0.375rem; background: #fbbf24; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <span style="font-size: 0.75rem; color: #fbbf24; opacity: 0.7;">IN PROGRESS</span>
+                </div>
+                
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #0F62FE, #006699, #0F62FE); opacity: 0.7;"></div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="padding: 1rem; border-radius: 1rem; background: rgba(15, 98, 254, 0.25); border: 1px solid rgba(15, 98, 254, 0.4); position: relative;">
+                            <div style="width: 2rem; height: 2rem; color: #0F62FE;">☁️</div>
+                            <div style="position: absolute; inset: 0; border-radius: 1rem; background: rgba(15, 98, 254, 0.15); animation: pulse 2s ease-in-out infinite;"></div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                            <h3 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #0F62FE; font-family: monospace;">
+                                IBM Cloud Essentials
+                        </h3>
+                        
+                        <p style="color: #d1d5db; margin-bottom: 0.5rem;">
+                                IBM Cloud Fundamentals & Cloud Computing Essentials
+                        </p>
+                        
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
+                                <span style="font-family: monospace;">&gt; IBM SkillsBuild</span>
+                                <span style="color: #fbbf24; font-family: monospace;">Still in Progress →</span>
                         </div>
                     </div>
                 </div>
@@ -2818,7 +3803,7 @@
                         <div style="color: white; font-weight: 600; margin-bottom: 0.25rem; font-family: monospace;">Email</div>
                         <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">lindaletroy27@mail.com</div>
                     </a>
-                    <a href="https://www.linkedin.com/in/sihle-dladla-664036204/" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
+                    <a href="https://www.linkedin.com/in/sihle-dladla-664036204/" target="_blank" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
                         <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #34d399; opacity: 0.7; font-family: monospace;">HTTPS</div>
                         <div style="position: absolute; top: 0.5rem; left: 0.5rem; display: flex; align-items: center; gap: 0.25rem;">
                             <div style="width: 0.375rem; height: 0.375rem; background: #34d399; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
@@ -2826,7 +3811,7 @@
                         </div>
                         <div style="width: 2rem; height: 2rem; color: #00f6ff; margin-bottom: 0.75rem; transition: transform 0.3s ease;">💼</div>
                         <div style="color: white; font-weight: 600; margin-bottom: 0.25rem; font-family: monospace;">LinkedIn</div>
-                        <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">linkedin.com/in/sihle-dladla/</div>
+                        <div style="color: #9ca3af; font-size: 0.875rem; text-align: center; font-family: monospace;">linkedin.com/in/sihle-dladla-664036204</div>
                     </a>
                     <a href="https://github.com/letroy969" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(0, 246, 255, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden; text-decoration: none;">
                         <div style="position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; color: #34d399; opacity: 0.7; font-family: monospace;">GIT</div>
@@ -3025,6 +4010,45 @@
                 });
             });
         });
+
+        // Hero Text Animation on Scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('[data-animate]');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, delay * 1000);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Fallback: animate immediately if already in viewport
+            animatedElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isInViewport) {
+                    const delay = el.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                        el.classList.add('animated');
+                    }, delay * 1000);
+                }
+            });
+        });
+
     </script>
 
 </body>
