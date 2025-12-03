@@ -2835,15 +2835,23 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a passionate software developer with a vision for the future. My journey in technology 
-                        is driven by curiosity and the desire to create solutions that push the boundaries of 
-                        what's possible.
+                        I'm Sihle Dladla, a results-driven Software Developer and final-year ICT (Application Development) student with a proven track record of building real, production-ready solutions. I specialize in creating clean, efficient, and impactful digital experiences, from Android applications to full-stack systems and cybersecurity tools.
                     </p>
                     
                     <p>
-                        From web applications to cloud infrastructure, I specialize in building scalable, 
-                        user-centric solutions that merge creativity with cutting-edge technology. Every project 
-                        is an opportunity to shape tomorrow's digital landscape.
+                        My journey includes developing an Android Task Management App, engineering a complete Online Student Card Creation System as a group project for the University of Mpumalanga, building a Cybersecurity Honeypot to demonstrate real threat-detection fundamentals, and delivering a Data Breach Insights Report with full visualizations through a Streamlit app. I am currently building a CI/CD pipeline using AWS to strengthen my cloud and automation skills. Together, these projects demonstrate my ability to take ideas from concept to execution with precision, ownership, and technical depth, while also showcasing strong data analysis and cloud engineering capabilities.
+                    </p>
+                    
+                    <p>
+                        I hold the FNB IT Varsity Fullstack Developer certification, AWS Cloud Practitioner Essentials certification, Cisco Introduction to Cybersecurity and Google's Foundation of Cybersecurity and I'm currently upskilling through the Google Cybersecurity Professional Certificate, adding layered expertise across development, cloud concepts, security, and IT operations.
+                    </p>
+                    
+                    <p>
+                        What sets me apart is my combination of technical versatility, problem-solving ability, and speed of learning. I thrive in environments that require initiative, creativity, and analytical thinking, whether working independently or as part of a team. I bring energy, discipline, and a strong growth mindset to every project.
+                    </p>
+                    
+                    <p>
+                        I'm now seeking an opportunity where I can contribute to high-impact development work, grow under industry-level engineering practices, and bring fresh ideas that move a team forward. I'm ready to add value from day one.
                     </p>
 
                     <div class="stats-grid">
@@ -3091,8 +3099,8 @@
 
         <div class="projects-grid">
 
-            <!-- Student Card System Project -->
-            <div class="project-card orange">
+            <!-- Student Card System Project - Featured Priority Project -->
+            <div class="project-card orange featured">
                 <div class="project-tech-pattern">
                     <div class="project-tech-square"></div>
                 </div>
@@ -3106,22 +3114,106 @@
                 <div class="project-preview">
                     <div class="preview-card-visual">
                         <div class="card-preview">
-                            <div class="card-header"></div>
-                            <div class="card-body">
-                                <div class="card-line"></div>
-                                <div class="card-line short"></div>
-                                <div class="card-chip"></div>
+                            <!-- Card Holographic Overlay -->
+                            <div class="card-holographic"></div>
+                            
+                            <!-- Card Header -->
+                            <div class="card-header">
+                                <div class="card-university-logo">UNIVERSITY</div>
+                                <div class="card-status-badge">ACTIVE</div>
                             </div>
+                            
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <!-- Student Photo -->
+                                <div class="card-photo-container">
+                                    <div class="card-photo">
+                                        <div class="photo-placeholder">👤</div>
+                                    </div>
+                                    <div class="photo-frame"></div>
+                                </div>
+                                
+                                <!-- Student Info -->
+                                <div class="card-info">
+                                    <div class="card-name">Online Student card creation system</div>
+                                    <div class="card-id">ID: 2024-12345</div>
+                                    <div class="card-program">Software Development</div>
+                                </div>
+                                
+                                <!-- Card Chip -->
+                                <div class="card-chip"></div>
+                                
+                                <!-- QR Code -->
+                                <div class="card-qr">
+                                    <div class="qr-pattern">
+                                        <div class="qr-square"></div>
+                                        <div class="qr-square"></div>
+                                        <div class="qr-square"></div>
+                                        <div class="qr-square"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Expiration Date -->
+                                <div class="card-expiry">EXP: 12/2027</div>
+                                
+                                <!-- Security Lines -->
+                                <div class="card-security-lines">
+                                    <div class="security-line"></div>
+                                    <div class="security-line"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Scanning Effect -->
+                            <div class="card-scan-effect"></div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="project-content">
-                    <h3 class="project-title">&lt; Student Card System /&gt;</h3>
+                    <div class="project-badge">🎓 Final-Year Group Project</div>
+                    <h3 class="project-title">&lt; Online Student card creation system /&gt; (Final-Year Group Project)</h3>
                     
-                    <p class="project-description">
-                        Web-based platform for students to request, create, and access virtual student cards. Features online registration, document upload, instant virtual card generation, and admin management tools for efficient card processing.
-                    </p>
+                    <div class="project-note">
+                        <strong>NB:</strong> Please note that the project might not have a database as our database has expired. For presentation purposes, we used a local database.
+                    </div>
+                    
+                    <div class="project-intro">
+                        This was my final-year group project, developed collaboratively and presented as part of our Software Development program. Throughout the project lifecycle, we focused heavily on continuous testing, improvements, and refining the system based on real student challenges.
+                    </div>
+                    
+                    <div class="project-structure">
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Problem</div>
+                            <div class="project-structure-content">
+                                The chaotic and inefficient process students faced when obtaining their physical student cards. At the start of every academic year, thousands of students from all faculties had to queue in a single venue to get their cards printed. The system often crashed due to high load, queues stretched for hours, and many students even missed classes because of the long waiting times.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Approach</div>
+                            <div class="project-structure-content">
+                                Built a secure, web-based Student Card System that allows students to register online, upload required documents that must be validated by system before approval, upload picture or use the live photo capture option on your device which the system must detect your face and store the image and generate a virtual student card instantly—eliminating the need for physical queues. Security was the highest priority, so we implemented proper authentication measures, validation standards, and verification processes to ensure data accuracy and system integrity. This was developed as a final-year group project with continuous testing, improvements, and refining based on real student challenges.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Result</div>
+                            <div class="project-structure-content">
+                                To solve this, we built a secure, web-based Student Card System that allows students to register online, upload required documents, and generate a virtual student card instantly—eliminating the need for physical queues. Security was the highest priority, so we implemented proper authentication measures, validation standards, and verification processes to ensure data accuracy and system integrity.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-additional-benefits">
+                        <div class="project-additional-benefits-label">Additional Benefits</div>
+                        <div class="project-additional-benefits-content">
+                            An additional benefit is that long-distance or online-learning students can now access institutional resources easily without having to travel to campus for a physical card, also students get to keep a picture they like on their student card that is in compliance with the University photo standard.
+                        </div>
+                    </div>
+                    
+                    <div class="project-impact">
+                        <div class="project-impact-content">
+                            This project demonstrated our ability to build a real-world, scalable solution that improves student experience while maintaining strong security and performance standards.
+                        </div>
+                    </div>
 
                     <div class="project-tech-stack">
                         <span class="project-tech-tag">HTML</span>
@@ -3214,9 +3306,30 @@
                 <div class="project-content">
                     <h3 class="project-title">&lt; AI Cybersecurity Honeypot /&gt;</h3>
                     
-                    <p class="project-description">
-                        Sophisticated educational cybersecurity honeypot system that simulates vulnerable endpoints, collects attacker telemetry, and uses machine learning (Isolation Forest, Autoencoder) to classify and predict attacker behaviors.
-                    </p>
+                    <div class="project-intro">
+                        This project is an AI-powered honeypot designed to safely analyze attacker behavior without risking real systems. It simulates vulnerable endpoints, captures malicious activity, and records detailed attacker telemetry for analysis.
+                    </div>
+                    
+                    <div class="project-structure">
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Problem</div>
+                            <div class="project-structure-content">
+                                Organizations needed a safe way to study attacker behaviors and improve security defenses without exposing real systems to threats.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Approach</div>
+                            <div class="project-structure-content">
+                                Using machine learning models such as Isolation Forest and Autoencoders, the system classifies abnormal behavior, detects intrusion patterns, and predicts potential threat actions. This creates a controlled environment for studying real-world attack techniques and improving defensive strategies.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Result</div>
+                            <div class="project-structure-content">
+                                The outcome is a practical, educational cybersecurity platform that provides meaningful insights into attacker behavior, anomaly detection, and automated threat analysis.
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="project-tech-stack">
                         <span class="project-tech-tag">Python</span>
@@ -3340,9 +3453,30 @@
                 <div class="project-content">
                     <h3 class="project-title">&lt; Data Breach Insights Report /&gt;</h3>
                     
-                    <p class="project-description">
-                        Comprehensive data analysis project with Excel pivot tables, Power BI dashboards, SQL queries, and machine learning models (87% accuracy). Professional executive reporting and foundation dataset for cybersecurity risk management.
-                    </p>
+                    <div class="project-intro">
+                        This project analyzes global data breach records to uncover meaningful patterns and provide organizations with actionable cybersecurity insights. The goal was to help security teams better understand breach trends, risk factors, and the types of organizations most affected.
+                    </div>
+                    
+                    <div class="project-structure">
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Problem</div>
+                            <div class="project-structure-content">
+                                Organizations lacked actionable insights from historical data breach information to inform their cybersecurity risk management strategies.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Approach</div>
+                            <div class="project-structure-content">
+                                Conducted comprehensive data analysis using Excel pivot tables, Power BI dashboards, SQL queries, and machine learning models achieving 87% accuracy in breach pattern prediction.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Result</div>
+                            <div class="project-structure-content">
+                                Delivered professional executive reporting and a foundation dataset that enables data-driven cybersecurity risk management decisions.
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="project-tech-stack">
                         <span class="project-tech-tag">Python</span>
@@ -3489,16 +3623,36 @@
                 <div class="project-content">
                     <h3 class="project-title">&lt; Data Breach Insights Visualization /&gt;</h3>
                     
-                    <p class="project-description">
-                        Interactive data visualization dashboard for the Data Breach Insights Report. Professional Streamlit web application with real-time Plotly visualizations, dynamic charts, AI-powered insights, and comprehensive analytics. Transforms complex breach data into actionable insights with an intuitive interface.
-                    </p>
+                    <div class="project-intro">
+                        An interactive data visualization dashboard built with Streamlit that transforms complex data breach insights into accessible, real-time visualizations. Features dynamic charts and comprehensive analytics to help stakeholders understand cybersecurity trends and make data-driven decisions.
+                    </div>
+                    
+                    <div class="project-structure">
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Problem</div>
+                            <div class="project-structure-content">
+                                Complex breach data needed to be transformed into accessible, interactive visualizations that stakeholders could easily understand and act upon.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Approach</div>
+                            <div class="project-structure-content">
+                                Built a professional Streamlit web application with real-time Plotly visualizations and dynamic charts to create an intuitive analytics interface.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Result</div>
+                            <div class="project-structure-content">
+                                Created a comprehensive visualization dashboard that transforms complex breach data into actionable insights, making cybersecurity analytics accessible to all stakeholders.
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="project-tech-stack">
                         <span class="project-tech-tag">Streamlit</span>
                         <span class="project-tech-tag">Python</span>
                         <span class="project-tech-tag">Plotly</span>
                         <span class="project-tech-tag">Pandas</span>
-                        <span class="project-tech-tag">AI Insights</span>
                         <span class="project-tech-tag">Cloud Deploy</span>
                     </div>
 
@@ -3511,11 +3665,6 @@
                         <a href="https://github.com/letroy969/DataBreach_Analyzer" class="project-link secondary" target="_blank">
                             <span class="project-link-icon">🐙</span>
                             Code
-                        </a>
-                        
-                        <a href="https://github.com/letroy969/Databreach_insight-report" class="project-link secondary" target="_blank">
-                            <span class="project-link-icon">📊</span>
-                            Foundation Data
                         </a>
                     </div>
                 </div>
@@ -3564,9 +3713,26 @@
                 <div class="project-content">
                     <h3 class="project-title">&lt; CI/CD Pipelines /&gt;</h3>
                     
-                    <p class="project-description">
-                        Automated deployment pipelines with infrastructure as code, container orchestration, and comprehensive testing workflows.
-                    </p>
+                    <div class="project-structure">
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Problem</div>
+                            <div class="project-structure-content">
+                                Manual deployment processes were error-prone, time-consuming, and lacked consistency across different environments.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Approach</div>
+                            <div class="project-structure-content">
+                                Implemented automated deployment pipelines using GitHub Actions, infrastructure as code with Terraform, container orchestration with Docker, and comprehensive testing workflows.
+                            </div>
+                        </div>
+                        <div class="project-structure-section">
+                            <div class="project-structure-label">Result</div>
+                            <div class="project-structure-content">
+                                Established reliable, automated CI/CD pipelines that ensure consistent deployments, reduce manual errors, and accelerate the software delivery process.
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="project-tech-stack">
                         <span class="project-tech-tag">GitHub Actions</span>
@@ -3750,10 +3916,11 @@
                 </div>
             </div>
 
-            <div class="about-card" style="cursor: default; transition: all 0.3s ease; background: rgba(35, 47, 62, 0.3); border: 1px solid rgba(35, 47, 62, 0.5);">
+            <a href="resources\certificates\AWSCompletion_cert.pdf" target="_blank" style="text-decoration: none; display: block;">
+            <div class="about-card" style="cursor: pointer; transition: all 0.3s ease; background: rgba(35, 47, 62, 0.3); border: 1px solid rgba(35, 47, 62, 0.5);">
                 <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
                     <div style="width: 0.375rem; height: 0.375rem; background: #fbbf24; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
-                    <span style="font-size: 0.75rem; color: #fbbf24; opacity: 0.7;">IN PROGRESS</span>
+                    <span style="font-size: 0.75rem; color: #fbbf24; opacity: 0.7;">VERIFIED</span>
                 </div>
                 
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #232F3E, #146EB4, #232F3E); opacity: 0.7;"></div>
@@ -3775,11 +3942,12 @@
                         
                         <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #9ca3af;">
                                 <span style="font-family: monospace;">&gt; AWS Training</span>
-                                <span style="color: #fbbf24; font-family: monospace;">Still in Progress →</span>
+                                <span style="color: #fbbf24; font-family: monospace;">VIew PDF →</span>
                         </div>
                     </div>
                 </div>
             </div>
+            </a>
 
             <div class="about-card" style="cursor: default; transition: all 0.3s ease; background: rgba(15, 98, 254, 0.15); border: 1px solid rgba(15, 98, 254, 0.3);">
                 <div style="position: absolute; top: 1rem; right: 1rem; display: flex; align-items: center; gap: 0.25rem;">
